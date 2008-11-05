@@ -1777,9 +1777,9 @@ class BibFormatObject:
 
     def get_record(self):
         """
-        Returns the record of this BibFormatObject instance
+        Returns the record structure of this BibFormatObject instance
 
-        @return the record structure as returned by BibRecord
+        @return the record structure as defined by BibRecord library
         """
         from invenio.search_engine import get_record
         # Create record if necessary
