@@ -17,12 +17,15 @@
 
 etcdir = $(sysconfdir)/bibformat/output_formats
 
-etc_DATA = HB.bfo HC.bfo HD.bfo HP.bfo HX.bfo XM.bfo EXCEL.bfo \
-	   XD.bfo HS.bfo HA.bfo \
-	   XE.bfo XE8X.bfo XN.bfo XR.bfo XW.bfo \
-	   XOAIDC.bfo XO.bfo XOAIMARC.bfo \
-	   HDREF.bfo HDFILE.bfo HDACT.bfo XP.bfo BSR.bfo WAPAFF.bfo \
-	   HDM.bfo DCITE.bfo MOBB.bfo MOBD.bfo
+etc_DATA = HA.bfo HB.bfo HC.bfo HD.bfo HM.bfo HP.bfo HS.bfo HX.bfo \
+           HDM.bfo HDREF.bfo HDFILE.bfo HDACT.bfo \
+           BSR.bfo \
+           DCITE.bfo \
+           EXCEL.bfo \
+           MOBB.bfo MOBD.bfo \
+           XD.bfo XE.bfo XE8X.bfo XM.bfo XN.bfo XP.bfo XR.bfo XW.bfo \
+           XOAIDC.bfo XO.bfo XOAIMARC.bfo \
+           WAPAFF.bfo
 
 tmpdir = $(prefix)/var/tmp
 
