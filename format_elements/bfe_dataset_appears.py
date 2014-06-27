@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##
 ## This file is part of Invenio.
-## Copyright (C) 2006, 2007, 2008, 2010, 2011, 2014 CERN.
+## Copyright (C) 2013 CERN.
 ##
 ## Invenio is free software; you can redistribute it and/or
 ## modify it under the terms of the GNU General Public License as
@@ -16,25 +16,28 @@
 ## You should have received a copy of the GNU General Public License
 ## along with Invenio; if not, write to the Free Software Foundation, Inc.,
 ## 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.
-"""BibFormat element - Prints brief HTML picture and links to resources
+"""BibFormat element - Prints the list of papers containing the dataset
 """
 __revision__ = "$Id$"
 
+
 def format_element(bfo):
     """
-    Prints html image and link to photo resources.
+    Prints the list of papers containing the dataset by title.
     """
+    
+    from invenio.bibformat_engine import BibFormatObject
     from invenio.config import CFG_BASE_URL, CFG_SITE_RECORD
 
-    resources = bfo.fields("8564_")
-    out = ""
-    for resource in resources:
+    parent_recid = bfo.field("786__w")
+    bfo_parent = BibFormatObject(parent_recid)
+    
+    title = bfo_parent.field("245__a")
+    url = CFG_BASE_URL + '/' + CFG_SITE_RECORD + '/' + str(bfo_parent.recID) 
 
-        if resource.get("x", "") == "icon":
-            out += '<a class="thumbnail" href="'+CFG_BASE_URL+'/'+ CFG_SITE_RECORD +'/'+bfo.control_field("001")+ \
-                   '?ln='+ bfo.lang + '"><img src="' + resource.get("u", "").replace(" ","") \
-                   + '" alt="" border="0" style="max-width: 80px;"/></a>'
-
+    out = "This dataset complements the following publication: <br />"
+    out += "<a href=\"" + url + "\">" + title + "</a>" 
+    
     return out
 
 def escape_values(bfo):

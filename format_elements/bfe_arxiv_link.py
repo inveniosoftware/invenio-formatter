@@ -1,7 +1,5 @@
-# -*- coding: utf-8 -*-
-##
 ## This file is part of Invenio.
-## Copyright (C) 2006, 2007, 2008, 2010, 2011, 2014 CERN.
+## Copyright (C) 2014 CERN.
 ##
 ## Invenio is free software; you can redistribute it and/or
 ## modify it under the terms of the GNU General Public License as
@@ -16,26 +14,28 @@
 ## You should have received a copy of the GNU General Public License
 ## along with Invenio; if not, write to the Free Software Foundation, Inc.,
 ## 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.
-"""BibFormat element - Prints brief HTML picture and links to resources
-"""
-__revision__ = "$Id$"
+"""BibFormat element - Links to arXiv"""
 
-def format_element(bfo):
+from cgi import escape
+from invenio.base.i18n import gettext_set_language
+
+def format_element(bfo, tag="037__", target="_blank"):
     """
-    Prints html image and link to photo resources.
+    Extracts the arXiv preprint information and
+    presents it as a direct link towards arXiv.org
     """
-    from invenio.config import CFG_BASE_URL, CFG_SITE_RECORD
-
-    resources = bfo.fields("8564_")
-    out = ""
-    for resource in resources:
-
-        if resource.get("x", "") == "icon":
-            out += '<a class="thumbnail" href="'+CFG_BASE_URL+'/'+ CFG_SITE_RECORD +'/'+bfo.control_field("001")+ \
-                   '?ln='+ bfo.lang + '"><img src="' + resource.get("u", "").replace(" ","") \
-                   + '" alt="" border="0" style="max-width: 80px;"/></a>'
-
-    return out
+    _ = gettext_set_language(bfo.lang)
+    potential_arxiv_ids = bfo.fields(tag)
+    arxiv_id = ""
+    for potential_arxiv_id in potential_arxiv_ids:
+        if potential_arxiv_id.get('9') == 'arXiv' and potential_arxiv_id.get('a', '').startswith('arXiv:'):
+            arxiv_id = potential_arxiv_id['a'][len('arXiv:'):]
+            return '<a href="http://arxiv.org/abs/%s" target="%s" alt="%s">%s</a>' % (
+                escape(arxiv_id, True),
+                escape(target, True),
+                escape(_("This article on arXiv.org"), True),
+                escape(arxiv_id))
+    return ""
 
 def escape_values(bfo):
     """
@@ -43,3 +43,5 @@ def escape_values(bfo):
     should be escaped.
     """
     return 0
+
+
