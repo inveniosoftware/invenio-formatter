@@ -37,7 +37,7 @@ manager = Manager(usage=__doc__)
 def expunge(output_format="HB"):
     """Remove static output formats from cache."""
     from invenio.ext.sqlalchemy import db
-    from invenio.modules.formatter.models import Bibfmt
+    from .models import Bibfmt
 
     # Make it uppercased as it is stored in database.
     output_format = output_format.upper()

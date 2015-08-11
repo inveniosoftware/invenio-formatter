@@ -26,13 +26,13 @@ import types
 from invenio.base.globals import cfg
 from invenio.base.i18n import language_list_long
 from invenio.ext.template import render_template_to_string
-from invenio.modules.formatter.registry import template_context_functions
 
 from werkzeug.utils import cached_property
 
 from . import registry
 from .api import get_output_format_content_type
 from .config import InvenioBibFormatError
+from .registry import template_context_functions
 
 # Cache for data we have already read and parsed
 format_templates_cache = {}

@@ -1,0 +1,23 @@
+include *.py
+include *.rst
+include *.txt
+include .dockerignore .editorconfig
+include LICENSE
+include babel.ini
+include pytest.ini
+include tox.ini
+recursive-include docs *.bat
+recursive-include docs *.py
+recursive-include docs *.rst
+recursive-include docs Makefile
+recursive-include invenio_formatter *.bft
+recursive-include invenio_formatter *.css
+recursive-include invenio_formatter *.js
+recursive-include invenio_formatter *.pot
+recursive-include invenio_formatter *.py
+recursive-include invenio_formatter *.tpl
+recursive-include invenio_formatter *.xsl
+recursive-include invenio_formatter *.yml
+recursive-include tests *.py
+recursive-include tests *.tpl
+recursive-include tests *.yml
