@@ -31,8 +31,14 @@ def info():
 
 def do_upgrade():
     """Implement your upgrades here."""
-    op.add_column('format', db.Column('mime_type',
-                  db.String(length=255), unique=True, nullable=True))
+    op.add_column(
+        'format',
+        db.Column(
+            'mime_type',
+            db.String(
+                length=255),
+            unique=True,
+            nullable=True))
     mime_type_dict = dict(
         xm='application/marcxml+xml',
         hm='application/marc',

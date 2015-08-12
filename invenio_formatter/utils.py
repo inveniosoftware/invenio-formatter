@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 #
 # This file is part of Invenio.
-# Copyright (C) 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014 CERN.
+# Copyright (C) 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014,
+# 2015 CERN.
 #
 # Invenio is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as
@@ -17,96 +18,80 @@
 # along with Invenio; if not, write to the Free Software Foundation, Inc.,
 # 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.
 
-"""
-Utilities for special formatting of records.
-
-API functions: highlight, get_contextual_content, encode_for_xml
-
-Used mainly by BibFormat elements.
-"""
-
-__revision__ = "$Id$"
+"""Define utilities for special formatting of records."""
 
 import re
-import zlib
 
-from invenio.config import \
-     CFG_OAI_ID_FIELD, \
-     CFG_WEBSEARCH_FULLTEXT_SNIPPETS, \
-     CFG_WEBSEARCH_FULLTEXT_SNIPPETS_CHARS, \
-     CFG_INSPIRE_SITE, \
-     CFG_WEBSEARCH_FULLTEXT_SNIPPETS_GENERATOR
-from invenio.legacy.dbquery import run_sql
 from invenio.utils.url import string_to_numeric_char_reference
-from invenio.utils.text import encode_for_xml
 from invenio.utils.shell import run_shell_command
-from invenio.legacy.bibrecord import get_fieldvalues
+
 
 def highlight_matches(text, compiled_pattern,
                       prefix_tag='<strong>', suffix_tag="</strong>"):
-    """
-    Highlight words in 'text' matching the 'compiled_pattern'
+    """Highlight words in 'text' matching the 'compiled_pattern'.
 
-    @param text: the text in which we want to "highlight" parts
-    @param compiled_pattern: the parts to highlight
-    @type compiled_pattern: a compiled regular expression
-    @param prefix_tag: prefix to use before each matching parts
-    @param suffix_tag: suffix to use after each matching parts
-    @return: a version of input X{text} with words matching X{compiled_pattern} surrounded by X{prefix_tag} and X{suffix_tag}
+    :param text: the text in which we want to "highlight" parts
+    :param compiled_pattern: the parts to highlight
+    :type compiled_pattern: a compiled regular expression
+    :param prefix_tag: prefix to use before each matching parts
+    :param suffix_tag: suffix to use after each matching parts
+    :return: a version of input X{text} with words matching X{compiled_pattern}
+             surrounded by X{prefix_tag} and X{suffix_tag}
     """
-
-    #Add 'prefix_tag' and 'suffix_tag' before and after 'match'
-    #FIXME decide if non english accentuated char should be desaccentuaded
+    # Add 'prefix_tag' and 'suffix_tag' before and after 'match'
+    # FIXME decide if non english accentuated char should be desaccentuaded
     def replace_highlight(match):
-        """ replace match.group() by prefix_tag + match.group() + suffix_tag"""
+        """Replace match.group() by prefix_tag + match.group() + suffix_tag."""
         return prefix_tag + match.group() + suffix_tag
 
-    #Replace and return keywords with prefix+keyword+suffix
+    # Replace and return keywords with prefix+keyword+suffix
     return compiled_pattern.sub(replace_highlight, text)
 
-def highlight(text, keywords=None,
-              prefix_tag='<strong>', suffix_tag="</strong>", whole_word_matches=False):
+
+def highlight(text, keywords=None, prefix_tag='<strong>',
+              suffix_tag="</strong>", whole_word_matches=False):
+    """Return text with all words highlighted with given tags.
+
+    This function places 'prefix_tag' and 'suffix_tag' before and after words
+    from 'keywords' in 'text'.
+
+    For example set prefix_tag='<b style="color: black; background-color:
+    rgb(255, 255, 102);">' and suffix_tag="</b>"
+
+    :param text: the text to modify
+    :param keywords: a list of string
+    :param prefix_tag: prefix to use before each matching parts
+    :param suffix_tag: suffix to use after each matching parts
+    :param whole_word_matches: to use whole word matches
+    :return: highlighted text
     """
-    Returns text with all words highlighted with given tags (this
-    function places 'prefix_tag' and 'suffix_tag' before and after
-    words from 'keywords' in 'text').
-
-    for example set prefix_tag='<b style="color: black; background-color: rgb(255, 255, 102);">' and suffix_tag="</b>"
-
-    @param text: the text to modify
-    @param keywords: a list of string
-    @param prefix_tag: prefix to use before each matching parts
-    @param suffix_tag: suffix to use after each matching parts
-    @param whole_word_matches: to use whole word matches
-    @return: highlighted text
-    """
-
     if not keywords:
         return text
 
     escaped_keywords = []
     for k in keywords:
         escaped_keywords.append(re.escape(k))
-    #Build a pattern of the kind keyword1 | keyword2 | keyword3
+    # Build a pattern of the kind keyword1 | keyword2 | keyword3
     if whole_word_matches:
         pattern = '|'.join(['\\b' + key + '\\b' for key in escaped_keywords])
     else:
         pattern = '|'.join(escaped_keywords)
     compiled_pattern = re.compile(pattern, re.IGNORECASE)
 
-    #Replace and return keywords with prefix+keyword+suffix
+    # Replace and return keywords with prefix+keyword+suffix
     return highlight_matches(text, compiled_pattern,
                              prefix_tag, suffix_tag)
+
 
 def get_contextual_content(text, keywords, max_lines=2):
     """
     Returns some lines from a text contextually to the keywords in
     'keywords_string'
 
-    @param text: the text from which we want to get contextual content
-    @param keywords: a list of keyword strings ("the context")
-    @param max_lines: the maximum number of line to return from the record
-    @return: a string
+    :param text: the text from which we want to get contextual content
+    :param keywords: a list of keyword strings ("the context")
+    :param max_lines: the maximum number of line to return from the record
+    :return: a string
     """
 
     def grade_line(text_line, keywords):
@@ -121,12 +106,12 @@ def get_contextual_content(text, keywords, max_lines=2):
 
         return grade
 
-    #Grade each line according to the keywords
+    # Grade each line according to the keywords
     lines = text.split('.')
-    #print 'lines: ',lines
+    # print 'lines: ',lines
     weights = [grade_line(line, keywords) for line in lines]
 
-    #print 'line weights: ', weights
+    # print 'line weights: ', weights
     def grade_region(lines_weight):
         """
         Grades a region. A region is a set of consecutive lines.
@@ -140,12 +125,14 @@ def get_contextual_content(text, keywords, max_lines=2):
 
     if max_lines > 1:
         region_weights = []
-        for index_weight in range(len(weights)- max_lines + 1):
-            region_weights.append(grade_region(weights[index_weight:(index_weight+max_lines)]))
+        for index_weight in range(len(weights) - max_lines + 1):
+            region_weights.append(
+                grade_region(
+                    weights[index_weight:(index_weight + max_lines)]))
 
         weights = region_weights
-    #print 'region weights: ',weights
-    #Returns line with maximal weight, and (max_lines - 1) following lines.
+    # print 'region weights: ',weights
+    # Returns line with maximal weight, and (max_lines - 1) following lines.
     index_with_highest_weight = 0
     highest_weight = 0
     i = 0
@@ -154,24 +141,26 @@ def get_contextual_content(text, keywords, max_lines=2):
             index_with_highest_weight = i
             highest_weight = weight
         i += 1
-    #print 'highest weight', highest_weight
+    # print 'highest weight', highest_weight
 
-    if index_with_highest_weight+max_lines > len(lines):
+    if index_with_highest_weight + max_lines > len(lines):
         return lines[index_with_highest_weight:]
     else:
-        return lines[index_with_highest_weight:index_with_highest_weight+max_lines]
+        return lines[
+            index_with_highest_weight:index_with_highest_weight +
+            max_lines]
 
 
 def parse_tag(tag):
-    """
-    Parse a marc code and decompose it in a table with:
+    """Parse a marc code and decompose it in a table.
+
     0-tag 1-indicator1 2-indicator2 3-subfield
 
-    The first 3 chars always correspond to tag.
-    The indicators are optional. However they must both be indicated, or both ommitted.
-    If indicators are ommitted or indicated with underscore '_', they mean "No indicator".
-    "No indicator" is also equivalent indicator marked as whitespace.
-    The subfield is optional. It can optionally be preceded by a dot '.' or '$$' or '$'
+    The first 3 chars always correspond to tag.  The indicators are optional.
+    However they must both be indicated, or both ommitted.  If indicators are
+    ommitted or indicated with underscore '_', they mean "No indicator".  "No
+    indicator" is also equivalent indicator marked as whitespace.  The subfield
+    is optional. It can optionally be preceded by a dot '.' or '$$' or '$'
 
     Any of the chars can be replaced by wildcard %
 
@@ -205,118 +194,58 @@ def parse_tag(tag):
     >> parse_tag('245$$%') = ['245', '', '', '']
     >> parse_tag('2%5$$a') = ['2%5', '', '', 'a']
 
-    @param tag: tag to parse
-    @return: a canonical form of the input X{tag}
+    :param tag: tag to parse
+    :return: a canonical form of the input X{tag}
     """
 
-    p_tag = ['', '', '', ''] # tag, ind1, ind2, code
-    tag = tag.replace(" ", "") # Remove empty characters
-    tag = tag.replace("$", "") # Remove $ characters
-    tag = tag.replace(".", "") # Remove . characters
-    #tag = tag.replace("_", "") # Remove _ characters
+    p_tag = ['', '', '', '']  # tag, ind1, ind2, code
+    tag = tag.replace(" ", "")  # Remove empty characters
+    tag = tag.replace("$", "")  # Remove $ characters
+    tag = tag.replace(".", "")  # Remove . characters
+    # tag = tag.replace("_", "") # Remove _ characters
 
-    p_tag[0] = tag[0:3] # tag
+    p_tag[0] = tag[0:3]  # tag
     if len(tag) == 4:
-        p_tag[3] = tag[3] # subfield
+        p_tag[3] = tag[3]  # subfield
 
     elif len(tag) == 5:
-        ind1 = tag[3] # indicator 1
+        ind1 = tag[3]  # indicator 1
         if ind1 != "_":
             p_tag[1] = ind1
 
-        ind2 = tag[4] # indicator 2
+        ind2 = tag[4]  # indicator 2
         if ind2 != "_":
             p_tag[2] = ind2
 
     elif len(tag) == 6:
-        p_tag[3] = tag[5] # subfield
+        p_tag[3] = tag[5]  # subfield
 
-        ind1 = tag[3] # indicator 1
+        ind1 = tag[3]  # indicator 1
         if ind1 != "_":
             p_tag[1] = ind1
 
-        ind2 = tag[4] # indicator 2
+        ind2 = tag[4]  # indicator 2
         if ind2 != "_":
             p_tag[2] = ind2
 
     return p_tag
-
-def get_all_fieldvalues(recID, tags_in):
-    """
-    Returns list of values that belong to fields in tags_in for record
-    with given recID.
-
-    Note that when a partial 'tags_in' is specified (eg. '100__'), the
-    subfields of all corresponding datafields are returned all 'mixed'
-    together. Eg. with::
-      123 100__ $a Ellis, J $u CERN
-      123 100__ $a Smith, K
-    >>> get_all_fieldvalues(123, '100__')
-    ['Ellis, J', 'CERN', 'Smith, K']
-
-    @param recID: record ID to consider
-    @param tags_in: list of tags got retrieve
-    @return: a list of values corresponding to X{tags_in} found in X{recID}
-    """
-    out = []
-    if type(tags_in) is not list:
-        tags_in = [tags_in, ]
-
-    dict_of_tags_out = {}
-    if not tags_in:
-        for i in range(0, 10):
-            for j in range(0, 10):
-                dict_of_tags_out["%d%d%%" % (i, j)] = '%'
-    else:
-        for tag in tags_in:
-            if len(tag) == 0:
-                for i in range(0, 10):
-                    for j in range(0, 10):
-                        dict_of_tags_out["%d%d%%" % (i, j)] = '%'
-            elif len(tag) == 1:
-                for j in range(0, 10):
-                    dict_of_tags_out["%s%d%%" % (tag, j)] = '%'
-            elif len(tag) <= 5:
-                dict_of_tags_out["%s%%" % tag] = '%'
-            else:
-                dict_of_tags_out[tag[0:5]] = tag[5:6]
-    tags_out = dict_of_tags_out.keys()
-    tags_out.sort()
-    # search all bibXXx tables as needed:
-    for tag in tags_out:
-        digits = tag[0:2]
-        try:
-            intdigits = int(digits)
-            if intdigits < 0 or intdigits > 99:
-                raise ValueError
-        except ValueError:
-            # invalid tag value asked for
-            continue
-        bx = "bib%sx" % digits
-        bibx = "bibrec_bib%sx" % digits
-        query = "SELECT b.value FROM %s AS b, %s AS bb "\
-                "WHERE bb.id_bibrec=%%s AND b.id=bb.id_bibxxx AND b.tag LIKE %%s"\
-                "ORDER BY bb.field_number, b.tag ASC" % (bx, bibx)
-        res = run_sql(query, (recID, str(tag)+dict_of_tags_out[tag]))
-        # go through fields:
-        out = [row[0] for row in res]
-
-    return out
 
 
 re_bold_latex = re.compile(r'\$?\\\\textbf\{(?P<content>.*?)\}\$?')
 re_emph_latex = re.compile(r'\$?\\\\emph\{(?P<content>.*?)\}\$?')
 re_generic_start_latex = re.compile(r'\$?\\\\begin\{(?P<content>.*?)\}\$?')
 re_generic_end_latex = re.compile(r'\$?\\\\end\{(?P<content>.*?)\}\$?')
-re_verbatim_env_latex = re.compile(r'\\\\begin\{verbatim.*?\}(?P<content>.*?)\\\\end\{verbatim.*?\}')
+re_verbatim_env_latex = re.compile(
+    r'\\\\begin\{verbatim.*?\}(?P<content>.*?)\\\\end\{verbatim.*?\}')
+
 
 def latex_to_html(text):
     """
     Do some basic interpretation of LaTeX input. Gives some nice
     results when used in combination with MathJax.
 
-    @param text: input "LaTeX" markup to interpret
-    @return: a representation of input LaTeX more suitable for HTML
+    :param text: input "LaTeX" markup to interpret
+    :return: a representation of input LaTeX more suitable for HTML
     """
     # Process verbatim environment first
     def make_verbatim(match_obj):
@@ -392,8 +321,8 @@ def get_text_snippets(textfile_path, patterns, nb_chars, max_snippets):
     """
     # TODO: - distinguish the beginning of sentences and make the snippets
     #         start there
-    #       - optimize finding patterns - first search for patterns apperaing next
-    #         to each other, secondly look for each patten not for first
+    #       - optimize finding patterns - first search for patterns apperaing
+    #         next to each other, secondly look for each patten not for first
     #         occurances of any pattern
 
     if len(patterns) == 0:
@@ -410,8 +339,8 @@ def get_text_snippets(textfile_path, patterns, nb_chars, max_snippets):
     cmdargs.append(textfile_path)
     (dummy1, output, dummy2) = run_shell_command(cmd, cmdargs)
     # a fact to keep in mind with this call to grep is that if patterns appear
-    # in two contigious lines, they will not be separated by '--' and therefore
-    # treated as one 'big snippet'
+    # in two contigious lines, they will not be separated by '--' and
+    # therefore treated as one 'big snippet'
     result = []
     big_snippets = output.split("--")
 
@@ -468,28 +397,33 @@ def cut_out_snippet(text, patterns, nb_chars):
     # TODO: cut at begin or end of sentence
 
     words = text.split()
-    snippet, start, finish = cut_out_snippet_core_creation(words, patterns, nb_chars)
+    snippet, start, finish = cut_out_snippet_core_creation(
+        words, patterns, nb_chars)
     return cut_out_snippet_wrap(snippet, words, start, finish, nb_chars)
 
 
 def cut_out_snippet_core_creation(words, patterns, nb_chars):
-    """ Stage 1:
-        Creating the snipper core starts and finishes with a matched pattern
-        The idea is to find a pattern occurance, then go on creating a suffix until
-        the next pattern is found. Then the suffix is added to the snippet
-        unless the loop brakes before due to suffix being to long.
+    """Stage 1.
+
+    Creating the snipper core starts and finishes with a matched pattern The
+    idea is to find a pattern occurance, then go on creating a suffix until the
+    next pattern is found. Then the suffix is added to the snippet unless the
+    loop brakes before due to suffix being to long.
     """
     snippet = ""
     suffix = ""
     i = 0
-    start = -1 # start is an index of the first matched pattern
-    finish = -1 # is an index of the last matched pattern
-    #in this loop, the snippet core always starts and finishes with a matched pattern
+    start = -1  # start is an index of the first matched pattern
+    finish = -1  # is an index of the last matched pattern
+    # in this loop, the snippet core always starts and finishes with a matched
+    # pattern
     while i < len(words) and len(snippet) + len(suffix) < nb_chars:
-        word_matched_p, additional_term_count = words_start_with_patterns(words[i:], patterns)
-        #if the first pattern was already found
+        word_matched_p, additional_term_count = words_start_with_patterns(
+            words[i:], patterns
+        )
+        # if the first pattern was already found
         if len(snippet) == 0:
-            #first occurance of pattern
+            # first occurance of pattern
             if word_matched_p:
                 start = i
                 suffix = ""
@@ -502,12 +436,15 @@ def cut_out_snippet_core_creation(words, patterns, nb_chars):
         else:
             if word_matched_p:
                 if not additional_term_count:
-                    # there is enough room for this pattern in the snippet because
-                    # with previous word the snippet was shorter than nb_chars
-                    snippet += suffix + " " + words[i] # suffix starts with a space
+                    # there is enough room for this pattern in the snippet
+                    # because with previous word the snippet was shorter than
+                    # nb_chars suffix starts with a space
+                    snippet += suffix + " " + words[i]
                     finish = i
                 else:
-                    snippet += suffix + " " + ' '.join(words[i:i + additional_term_count + 1]) # suffix starts with a space
+                    # suffix starts with a space
+                    snippet += suffix + " " + \
+                        ' '.join(words[i:i + additional_term_count + 1])
                     finish = i + additional_term_count
                 suffix = ""
             else:
@@ -525,14 +462,14 @@ def cut_out_snippet_wrap(snippet, words, start, finish, nb_chars):
         if front and start == 0:
             front = False
         else:
-            if not front and finish == len(words) -1:
+            if not front and finish == len(words) - 1:
                 front = True
 
         if start == 0 and finish == len(words) - 1:
             break
 
         if front:
-            snippet = words[start -1] + " " + snippet
+            snippet = words[start - 1] + " " + snippet
             start -= 1
             front = False
         else:

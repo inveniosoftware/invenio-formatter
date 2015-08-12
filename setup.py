@@ -36,13 +36,14 @@ history = open('CHANGES.rst').read()
 requirements = [
     'Flask>=0.10.1',
     'six>=1.7.2',
-    'Invenio>=2.0.3',
 ]
 
 test_requirements = [
+    'unittest2>=1.1.0',
+    'Flask_Testing>=0.4.1',
     'pytest>=2.7.0',
-    'pytest-cov>=1.8.0',
-    'pytest-pep8>=1.0.6',
+    'pytest_cov>=1.8.0,<2.0.0',
+    'pytest_pep8>=1.0.6',
     'coverage>=3.7.1',
 ]
 
@@ -91,7 +92,7 @@ setup(
     version=version,
     description=__doc__,
     long_description=readme + '\n\n' + history,
-    keywords='invenio TODO',
+    keywords='invenio formatter',
     license='GPLv2',
     author='CERN',
     author_email='info@invenio-software.org',

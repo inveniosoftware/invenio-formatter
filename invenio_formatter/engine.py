@@ -38,10 +38,10 @@ from .registry import template_context_functions
 format_templates_cache = {}
 format_outputs_cache = {}
 
-html_field = '<!--HTML-->' # String indicating that field should be
-                           # treated as HTML (and therefore no escaping of
-                           # HTML tags should occur.
-                           # Appears in some field values.
+html_field = '<!--HTML-->'  # String indicating that field should be
+# treated as HTML (and therefore no escaping of
+# HTML tags should occur.
+# Appears in some field values.
 
 # Regular expression for finding <lang>...</lang> tag in format templates
 pattern_lang = re.compile(r'''
@@ -55,7 +55,7 @@ pattern_lang = re.compile(r'''
 # Builds regular expression for finding each known language in <lang> tags
 ln_pattern_text = r"<("
 for lang in language_list_long(enabled_langs_only=False):
-    ln_pattern_text += lang[0] +r"|"
+    ln_pattern_text += lang[0] + r"|"
 
 ln_pattern_text = ln_pattern_text.rstrip(r"|")
 ln_pattern_text += r")>(.*?)</\1>"
@@ -82,7 +82,7 @@ pattern_format_template_desc = re.compile(r'''
     >                      #closing <description> start tag
     (?P<desc>.*?)          #description value. any char that is not end tag
     </description\s*>(\n)? #end tag
-    ''', re.IGNORECASE | re.DOTALL | re.VERBOSE)
+    ''', re.IGNORECASE | re.DOTALL | re.VERBOSE)  # noqa
 
 # Regular expression for finding <BFE_ > tags in format templates
 pattern_tag = re.compile(r'''
@@ -98,16 +98,17 @@ pattern_tag = re.compile(r'''
     )*)                          #many params
     \s*                          #any number of spaces
     (/)?>                        #end of the tag
-    ''', re.IGNORECASE | re.DOTALL | re.VERBOSE)
+    ''', re.IGNORECASE | re.DOTALL | re.VERBOSE)  # noqa
 
-# Regular expression for finding params inside <BFE_ > tags in format templates
+# Regular expression for finding params inside <BFE_ > tags
+# in format templates
 pattern_function_params = re.compile(r'''
     (?P<param>([^=\s])*)\s*  # Param name: any chars that is not a white space or equality. Followed by space(s)
     =\s*                     # Equality: = followed by any number of spaces
     (?P<sep>[\'"])           # One of the separators
     (?P<value>.*?)           # Param value: any chars that is not a separator like previous one
     (?P=sep)                 # Same separator as starting one
-    ''', re.VERBOSE | re.DOTALL)
+    ''', re.VERBOSE | re.DOTALL)  # noqa
 
 # Regular expression for finding format elements "params" attributes
 # (defined by @param)
@@ -119,16 +120,16 @@ pattern_format_element_params = re.compile(r'''
     #(?P=sep)                          # Same separator as starting one
     #)?\s*                             # Default value for param is optional. Followed by space(s)
     (?P<desc>.*)                       # Any text that is not end of line (thanks to MULTILINE parameter)
-    ''', re.VERBOSE | re.MULTILINE)
+    ''', re.VERBOSE | re.MULTILINE)  # noqa
 
 # Regular expression for finding format elements "see also" attribute
 # (defined by @see)
 pattern_format_element_seealso = re.compile(r'''@see:\s*(?P<see>.*)''',
                                             re.VERBOSE | re.MULTILINE)
 
-#Regular expression for finding 2 expressions in quotes, separated by
-#comma (as in template("1st","2nd") )
-#Used when parsing output formats
+# Regular expression for finding 2 expressions in quotes, separated by
+# comma (as in template("1st","2nd") )
+# Used when parsing output formats
 # pattern_parse_tuple_in_quotes = re.compile('''
 #      (?P<sep1>[\'"])
 #      (?P<val1>.*)
@@ -140,7 +141,10 @@ pattern_format_element_seealso = re.compile(r'''@see:\s*(?P<see>.*)''',
 #      ''', re.VERBOSE | re.MULTILINE)
 
 sub_non_alnum = re.compile('[^0-9a-zA-Z]+')
-fix_tag_name = lambda s: sub_non_alnum.sub('_', s.lower())
+
+
+def fix_tag_name(s):
+    return sub_non_alnum.sub('_', s.lower())
 
 
 class LazyTemplateContextFunctionsCache(object):
@@ -268,24 +272,29 @@ def filter_languages(format_template, ln=None):
     ln = ln or cfg['CFG_SITE_LANG']
     # First define search_lang_tag(match) and clean_language_tag(match), used
     # in re.sub() function
+
     def search_lang_tag(match):
         """
         Searches for the <lang>...</lang> tag and remove inner localized tags
         such as <en>, <fr>, that are not current_lang.
 
-        If current_lang cannot be found inside <lang> ... </lang>, try to use 'CFG_SITE_LANG'
+        If current_lang cannot be found inside <lang> ... </lang>, try to use
+        'CFG_SITE_LANG'
 
-        :param match: a match object corresponding to the special tag that must be interpreted
+        :param match: a match object corresponding to the special tag that
+                      must be interpreted
         """
         current_lang = ln
 
         def clean_language_tag(match):
             """
-            Return tag text content if tag language of match is output language.
+            Return tag text content if tag language of match is output
+            language.
 
             Called by substitution in 'filter_languages(...)'
 
-            :param match: a match object corresponding to the special tag that must be interpreted
+            :param match: a match object corresponding to the special tag that
+                          must be interpreted
             """
             if match.group(1) == current_lang:
                 return match.group(2)
@@ -293,22 +302,22 @@ def filter_languages(format_template, ln=None):
                 return ""
             # End of clean_language_tag
 
-
         lang_tag_content = match.group("langs")
         # Try to find tag with current lang. If it does not exists,
         # then current_lang becomes CFG_SITE_LANG until the end of this
         # replace
-        pattern_current_lang = re.compile(r"<(" + current_lang +
-                                          r")\s*>(.*)(</" + current_lang + r"\s*>)", re.IGNORECASE | re.DOTALL)
+        pattern_current_lang = re.compile(
+            r"<(" + current_lang + r")\s*>(.*)(</" + current_lang + r"\s*>)",
+            re.IGNORECASE | re.DOTALL)
         if re.search(pattern_current_lang, lang_tag_content) is None:
-            current_lang = CFG_SITE_LANG
+            current_lang = cfg['CFG_SITE_LANG']
 
         cleaned_lang_tag = ln_pattern.sub(clean_language_tag, lang_tag_content)
         return cleaned_lang_tag.strip()
         # End of search_lang_tag
 
-
-    filtered_format_template = pattern_lang.sub(search_lang_tag, format_template)
+    filtered_format_template = pattern_lang.sub(
+        search_lang_tag, format_template)
     return filtered_format_template
 
 

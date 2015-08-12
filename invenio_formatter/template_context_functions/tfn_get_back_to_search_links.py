@@ -51,12 +51,13 @@ def template_context_function(recID):
         return ""
 
     if recids:
-        return render_template_to_string('records/back_to_search_links.html',
-                                         recID=int(recID),
-                                         last_query=cfg['CFG_SITE_URL'] + last_query,
-                                         recids=recids)
+        return render_template_to_string(
+            'records/back_to_search_links.html',
+            recID=int(recID),
+            last_query=cfg['CFG_SITE_URL'] +
+            last_query,
+            recids=recids)
     else:
         # did not rich the limit CFG_WEBSEARCH_PREV_NEXT_HIT_LIMIT,
         # so nothing is displayed
         return ""
-

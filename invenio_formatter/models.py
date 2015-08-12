@@ -46,7 +46,7 @@ class Bibfmt(db.Model):
         nullable=False,
         server_default='',
         index=True
-        )
+    )
 
     last_updated = db.Column(
         db.DateTime,

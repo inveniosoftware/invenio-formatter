@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # This file is part of Invenio.
-# Copyright (C) 2014 CERN.
+# Copyright (C) 2014, 2015 CERN.
 #
 # Invenio is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as
@@ -34,7 +34,9 @@ def info():
 
 def do_upgrade():
     """Perform upgrade."""
-    _run_sql_ignore("INSERT INTO format (name, code, description, content_type, visibility) VALUES ('Recjson Format', 'recjson', 'Recjson format.', 'application/json', 0);")
+    _run_sql_ignore("INSERT INTO format (name, code, description, "
+                    "content_type, visibility) VALUES ('Recjson Format', "
+                    "'recjson', 'Recjson format.', 'application/json', 0);")
 
 
 def estimate():
