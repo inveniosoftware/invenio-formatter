@@ -20,7 +20,6 @@
 """Database cache for formatter."""
 
 from invenio.ext.sqlalchemy import db
-from invenio_records.models import Record as Bibrec
 
 
 class Bibfmt(db.Model):
@@ -30,7 +29,6 @@ class Bibfmt(db.Model):
 
     id_bibrec = db.Column(
         db.MediumInteger(8, unsigned=True),
-        db.ForeignKey(Bibrec.id),
         nullable=False,
         server_default='0',
         primary_key=True,
@@ -59,7 +57,5 @@ class Bibfmt(db.Model):
     value = db.Column(db.iLargeBinary)
 
     needs_2nd_pass = db.Column(db.TinyInteger(1), server_default='0')
-
-    bibrec = db.relationship(Bibrec, backref='bibfmt')
 
 __all__ = ('Bibfmt', )
