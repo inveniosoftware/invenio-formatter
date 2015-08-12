@@ -13,7 +13,9 @@ recursive-include docs Makefile
 recursive-include invenio_formatter *.bft
 recursive-include invenio_formatter *.css
 recursive-include invenio_formatter *.js
+recursive-include invenio_formatter *.mo
 recursive-include invenio_formatter *.pot
+recursive-include invenio_formatter *.po
 recursive-include invenio_formatter *.py
 recursive-include invenio_formatter *.tpl
 recursive-include invenio_formatter *.xsl
