@@ -24,6 +24,11 @@
 Changes
 =======
 
+Version 0.2.0 (release 2015-08-17)
+
+- Removes unused legacy functions.  (#3)
+- Ports `response_formated_records` from Invenio search module.
+
 Version 0.1.0 (release 2015-08-12)
 
 - Initial public release.
