@@ -22,9 +22,11 @@
 
 from .api import get_output_format_content_type
 from .engine import format_record, format_records
+from .utils import response_formated_records
 
 __all__ = (
     'format_record',
     'format_records',
     'get_output_format_content_type',
+    'response_formated_records',
 )

@@ -20,10 +20,19 @@
 
 """Define utilities for special formatting of records."""
 
+import datetime
 import re
+import time
 
-from invenio.utils.url import string_to_numeric_char_reference
+from flask import current_app, make_response
+from flask_login import current_user
+from werkzeug.http import http_date
+
 from invenio.utils.shell import run_shell_command
+from invenio.utils.url import string_to_numeric_char_reference
+
+from .api import get_output_format_content_type
+from .engine import format_records
 
 
 def highlight_matches(text, compiled_pattern,
@@ -477,3 +486,35 @@ def cut_out_snippet_wrap(snippet, words, start, finish, nb_chars):
             finish += 1
             front = True
     return snippet
+
+
+def response_formated_records(records, of, **kwargs):
+    """Return formatter records.
+
+    Response contains correct Cache and TTL information in HTTP headers.
+    """
+    response = make_response(format_records(records, of=of, **kwargs))
+    response.mimetype = get_output_format_content_type(of)
+    current_time = datetime.datetime.now()
+    response.headers['Last-Modified'] = http_date(
+        time.mktime(current_time.timetuple())
+    )
+    expires = current_app.config.get(
+        'CFG_WEBSEARCH_SEARCH_CACHE_TIMEOUT', None)
+
+    if expires is None:
+        response.headers['Cache-Control'] = (
+            'no-store, no-cache, must-revalidate, '
+            'post-check=0, pre-check=0, max-age=0'
+        )
+        response.headers['Expires'] = '-1'
+    else:
+        expires_time = current_time + datetime.timedelta(seconds=expires)
+        response.headers['Vary'] = 'Accept'
+        response.headers['Cache-Control'] = (
+            'public' if current_user.is_guest else 'private'
+        )
+        response.headers['Expires'] = http_date(time.mktime(
+            expires_time.timetuple()
+        ))
+    return response
