@@ -19,7 +19,7 @@
 
 import warnings
 from invenio.ext.sqlalchemy import db
-from invenio.modules.upgrader.api import op
+from invenio_upgrader.api import op
 from invenio.legacy.dbquery import run_sql
 
 depends_on = [u'formatter_2014_08_01_recjson']

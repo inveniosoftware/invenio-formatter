@@ -22,7 +22,7 @@
 import warnings
 import sqlalchemy as sa
 from sqlalchemy.dialects import mysql
-from invenio.modules.upgrader.api import op
+from invenio_upgrader.api import op
 from sqlalchemy.exc import OperationalError
 
 depends_on = ['formatter_2014_08_01_recjson']
