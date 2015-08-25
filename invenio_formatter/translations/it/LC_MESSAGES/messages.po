@@ -6,9 +6,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: invenio-formatter 0.1.0.dev20150000\n"
+"Project-Id-Version: invenio-formatter 0.2.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-08-11 14:55+0200\n"
+"POT-Creation-Date: 2015-08-25 17:54+0200\n"
 "PO-Revision-Date: 2015-08-12 13:07+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: it <LL@li.org>\n"

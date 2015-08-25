@@ -24,11 +24,19 @@
 Changes
 =======
 
-Version 0.2.0 (release 2015-08-17)
+Version 0.2.1 (released 2015-08-25)
+
+- Adds missing `invenio_upgrader` dependency following its separation
+  into standalone package.
+
+- Fixes import of invenio_upgrader.
+
+Version 0.2.0 (released 2015-08-17)
 
 - Removes unused legacy functions.  (#3)
+
 - Ports `response_formated_records` from Invenio search module.
 
-Version 0.1.0 (release 2015-08-12)
+Version 0.1.0 (released 2015-08-12)
 
 - Initial public release.

@@ -1,8 +1,8 @@
 ==========================
- Invenio-Formatter v0.2.0
+ Invenio-Formatter v0.2.1
 ==========================
 
-Invenio-Formatter v0.2.0 was released on August 17, 2015.
+Invenio-Formatter v0.2.1 was released on August 25, 2015.
 
 About
 -----
@@ -11,25 +11,23 @@ Invenio module for formatting the bibliographic records.
 
 *This is an experimental development preview release.*
 
-Incompatible changes
---------------------
+Bug fixes
+---------
 
-- Removes unused legacy functions.  (#3)
+- Adds missing `invenio_upgrader` dependency following its separation
+  into standalone package.
 
-New features
-------------
-
-- Ports `response_formated_records` from Invenio search module.
+- Fixes import of invenio_upgrader.
 
 Installation
 ------------
 
-   $ pip install invenio-formatter==0.2.0
+   $ pip install invenio-formatter==0.2.1
 
 Documentation
 -------------
 
-   http://invenio-formatter.readthedocs.org/en/v0.2.0
+   http://invenio-formatter.readthedocs.org/en/v0.2.1
 
 Happy hacking and thanks for flying Invenio-Formatter.
 

@@ -32,6 +32,7 @@ Invenio module for formatting the bibliographic records.
 - Björn Oltmanns <bjoern.oltmanns@gmail.com>
 - Christopher Dickinson <christopher.dickinson@cern.ch>
 - Diane Berkovits <diane.berkovits@cern.ch>
+- Eamonn Maguire <eamonnmag@gmail.com>
 - Eirini Psallida <eirini.psallida@cern.ch>
 - Esteban J. G. Gabancho <esteban.gabancho@cern.ch>
 - Ferran Jorba <Ferran.Jorba@uab.cat>

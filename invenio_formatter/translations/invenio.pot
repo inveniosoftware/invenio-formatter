@@ -1,5 +1,5 @@
 # Translations template for invenio-formatter.
-# Copyright (C) 2015 ORGANIZATION
+# Copyright (C) 2015 CERN
 # This file is distributed under the same license as the invenio-formatter
 # project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
@@ -7,9 +7,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: invenio-formatter 0.1.0.dev20150000\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-08-11 14:55+0200\n"
+"Project-Id-Version: invenio-formatter 0.2.1\n"
+"Report-Msgid-Bugs-To: info@invenio-software.org\n"
+"POT-Creation-Date: 2015-08-25 17:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
