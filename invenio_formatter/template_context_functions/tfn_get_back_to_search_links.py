@@ -18,7 +18,7 @@
 # 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.
 
 from flask import session
-from invenio.base.globals import cfg
+from invenio_base.globals import cfg
 from invenio.ext.template import render_template_to_string
 
 """

@@ -23,8 +23,8 @@ import re
 import time
 import types
 
-from invenio.base.globals import cfg
-from invenio.base.i18n import language_list_long
+from invenio_base.globals import cfg
+from invenio_base.i18n import language_list_long
 from invenio.ext.template import render_template_to_string
 
 from werkzeug.utils import cached_property
@@ -197,7 +197,7 @@ def format_record(record, of, ln=None, verbose=0, search_pattern=None,
 def format_records(records, of='hb', ln=None, **ctx):
     """Return records using Jinja template."""
     from flask import request
-    from invenio.base.i18n import wash_language
+    from invenio_base.i18n import wash_language
     from .registry import export_formats
 
     of = of.lower()
