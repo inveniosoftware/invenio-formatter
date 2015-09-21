@@ -21,7 +21,7 @@
 
 from __future__ import unicode_literals
 
-from invenio.ext.assets import Bundle
+from invenio_ext.assets import Bundle
 
 
 css = Bundle(

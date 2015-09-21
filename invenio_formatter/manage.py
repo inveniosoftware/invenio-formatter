@@ -27,7 +27,7 @@ import shutil
 
 from six import iteritems
 
-from invenio.ext.script import Manager
+from invenio_ext.script import Manager
 
 manager = Manager(usage=__doc__)
 
@@ -36,7 +36,7 @@ manager = Manager(usage=__doc__)
                 default="HB", help="Specify output format/s (default HB)")
 def expunge(output_format="HB"):
     """Remove static output formats from cache."""
-    from invenio.ext.sqlalchemy import db
+    from invenio_ext.sqlalchemy import db
     from .models import Bibfmt
 
     # Make it uppercased as it is stored in database.

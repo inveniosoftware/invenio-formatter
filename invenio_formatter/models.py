@@ -19,7 +19,7 @@
 
 """Database cache for formatter."""
 
-from invenio.ext.sqlalchemy import db
+from invenio_ext.sqlalchemy import db
 
 
 class Bibfmt(db.Model):
