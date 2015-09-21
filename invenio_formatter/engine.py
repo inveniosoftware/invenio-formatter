@@ -25,7 +25,7 @@ import types
 
 from invenio_base.globals import cfg
 from invenio_base.i18n import language_list_long
-from invenio.ext.template import render_template_to_string
+from invenio_ext.template import render_template_to_string
 
 from werkzeug.utils import cached_property
 
