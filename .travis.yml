@@ -25,8 +25,6 @@
 notifications:
   email: false
 
-sudo: false
-
 services:
   - mysql
   - redis
@@ -53,7 +51,6 @@ before_install:
   - "python requirements.py --extras=$REXTRAS --level=dev > .travis-devel-requirements.txt"
 
 install:
-  - "travis_retry pip install Invenio"
   - "travis_retry pip install -r .travis-$REQUIREMENTS-requirements.txt --allow-all-external"
   - "travis_retry pip install -e .[$REXTRAS]"
 
