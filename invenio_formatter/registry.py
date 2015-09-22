@@ -28,7 +28,8 @@ from flask_registry import (
 )
 
 from invenio_ext.registry import ModuleAutoDiscoverySubRegistry
-from invenio.utils.datastructures import LazyDict
+
+from invenio_utils.datastructures import LazyDict
 
 import yaml
 
