@@ -40,6 +40,7 @@ requirements = [
     'invenio-ext>=0.1.0',
     'invenio-utils>=0.1.0',
     'invenio-upgrader>=0.1.0',
+    'pyyaml>=3.11',
 ]
 
 test_requirements = [
