@@ -35,6 +35,7 @@ legacy_upgrades = [
     'formatter_2015_01_29_removal_of_format_tables.py',
 ]
 
+
 def info():
     """Info message."""
     return __doc__
