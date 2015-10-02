@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # This file is part of Invenio.
-# Copyright (C) 2014, 2015 CERN.
+# Copyright (C) 2015 CERN.
 #
 # Invenio is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as
@@ -17,42 +17,34 @@
 # along with Invenio; if not, write to the Free Software Foundation, Inc.,
 # 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.
 
+"""Remove legacy upgrade recipes."""
+
 import warnings
+
 from invenio_ext.sqlalchemy import db
 from invenio_upgrader.api import op
-from invenio.legacy.dbquery import run_sql
 
-depends_on = [u'formatter_2014_08_01_recjson']
+from sqlalchemy.sql import text
 
+depends_on = []
+
+legacy_upgrades = [
+    'formatter_2014_08_01_recjson.py',
+    'formatter_2014_08_25_add_bibfmt_kind.py',
+    'formatter_2014_10_29_add_mime_type.py',
+    'formatter_2015_01_29_removal_of_format_tables.py',
+]
 
 def info():
-    return "Adds a mime_type column to format table"
+    """Info message."""
+    return __doc__
 
 
 def do_upgrade():
     """Implement your upgrades here."""
-    op.add_column(
-        'format',
-        db.Column(
-            'mime_type',
-            db.String(
-                length=255),
-            unique=True,
-            nullable=True))
-    mime_type_dict = dict(
-        xm='application/marcxml+xml',
-        hm='application/marc',
-        recjson='application/json',
-        hx='application/x-bibtex',
-        xn='application/x-nlm',
-    )
-    query = "UPDATE format SET mime_type=%s WHERE code=%s"
-    for code, mime in mime_type_dict.items():
-        params = (mime, code)
-        try:
-            run_sql(query, params)
-        except Exception as e:
-            warnings.warn("Failed to execute query {0}: {1}".format(query, e))
+    sql = text('delete from upgrade where upgrade = :upgrade')
+    for upgrade in legacy_upgrades:
+        db.engine.execute(sql, upgrade=upgrade)
 
 
 def estimate():
@@ -62,8 +54,10 @@ def estimate():
 
 def pre_upgrade():
     """Run pre-upgrade checks (optional)."""
-    # Example of raising errors:
-    # raise RuntimeError("Description of error 1", "Description of error 2")
+    sql = text('select 1 from upgrade where upgrade = :upgrade')
+    for upgrade in legacy_upgrades:
+        if not db.engine.execute(sql, upgrade=upgrade).fetchall():
+            warnings.warn("Upgrade '{}' was not applied.".format(upgrade))
 
 
 def post_upgrade():
