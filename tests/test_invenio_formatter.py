@@ -22,12 +22,30 @@
 # waive the privileges and immunities granted to it by virtue of its status
 # as an Intergovernmental Organization or submit itself to any jurisdiction.
 
-"""Version information for Invenio-Formatter.
 
-This file is imported by ``invenio_formatter.__init__``,
-and parsed by ``setup.py``.
-"""
+"""Module tests."""
 
 from __future__ import absolute_import, print_function
 
-__version__ = "1.0.0.dev20150000"
+from flask import Flask
+
+from invenio_formatter import InvenioFormatter
+
+
+def test_version():
+    """Test version import."""
+    from invenio_formatter import __version__
+    assert __version__
+
+
+def test_init():
+    """Test extension initialization."""
+    app = Flask('testapp')
+    ext = InvenioFormatter(app)
+    assert 'invenio-formatter' in app.extensions
+
+    app = Flask('testapp')
+    ext = InvenioFormatter()
+    assert 'invenio-formatter' not in app.extensions
+    ext.init_app(app)
+    assert 'invenio-formatter' in app.extensions

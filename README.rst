@@ -41,9 +41,9 @@
         :target: https://github.com/inveniosoftware/invenio-formatter/blob/master/LICENSE
 
 
-Invenio module for formatting the bibliographic records.
+Jinja utilities for Invenio.
 
-*This is an experimental development preview release.*
+*This is an experimental developer preview release.*
 
 * Free software: GPLv2 license
-* Documentation: https://invenio-formatter.readthedocs.org.
+* Documentation: https://pythonhosted.org/invenio-formatter/

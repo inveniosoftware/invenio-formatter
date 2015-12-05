@@ -21,10 +21,11 @@
     waive the privileges and immunities granted to it by virtue of its status
     as an Intergovernmental Organization or submit itself to any jurisdiction.
 
+
 Authors
 =======
 
-Invenio module for formatting the bibliographic records.
+Jinja utilities for Invenio.
 
 - Adrian Pawel Baran <adrian.pawel.baran@cern.ch>
 - Alessio Deiana <alessio.deiana@cern.ch>

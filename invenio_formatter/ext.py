@@ -22,12 +22,30 @@
 # waive the privileges and immunities granted to it by virtue of its status
 # as an Intergovernmental Organization or submit itself to any jurisdiction.
 
-"""Version information for Invenio-Formatter.
-
-This file is imported by ``invenio_formatter.__init__``,
-and parsed by ``setup.py``.
-"""
+"""Jinja utilities for Invenio."""
 
 from __future__ import absolute_import, print_function
 
-__version__ = "1.0.0.dev20150000"
+from .views import blueprint
+
+
+class InvenioFormatter(object):
+    """Invenio-Formatter extension."""
+
+    def __init__(self, app=None):
+        """Extension initialization."""
+        if app:
+            self.init_app(app)
+
+    def init_app(self, app):
+        """Flask application initialization."""
+        self.init_config(app)
+        app.register_blueprint(blueprint)
+        app.extensions['invenio-formatter'] = self
+
+    def init_config(self, app):
+        """Initialize configuration."""
+        app.config.setdefault(
+            "FORMATTER_BASE_TEMPLATE",
+            app.config.get("BASE_TEMPLATE",
+                           "invenio_formatter/base.html"))

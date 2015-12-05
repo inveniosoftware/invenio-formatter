@@ -22,9 +22,9 @@
     as an Intergovernmental Organization or submit itself to any jurisdiction.
 
 
-Changes
-=======
+API Docs
+========
 
-Version 1.0.0 (released TBD)
+invenio_formatter
+-----------------
 
-- Initial public release.
