@@ -60,6 +60,7 @@ setup_requires = [
 ]
 
 install_requires = [
+    'arrow>=0.7.0',
     'Flask-BabelEx>=0.9.2',
     'Flask>=0.10',
     'Jinja2>=2.8',

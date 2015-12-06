@@ -30,6 +30,8 @@ from __future__ import absolute_import, print_function
 import pytest
 from flask import Flask
 
+from invenio_formatter import InvenioFormatter
+
 
 @pytest.fixture()
 def app():
@@ -38,4 +40,5 @@ def app():
     app.config.update(
         TESTING=True
     )
+    InvenioFormatter(app)
     return app

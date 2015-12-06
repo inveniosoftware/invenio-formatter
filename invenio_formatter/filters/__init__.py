@@ -22,31 +22,6 @@
 # waive the privileges and immunities granted to it by virtue of its status
 # as an Intergovernmental Organization or submit itself to any jurisdiction.
 
-"""Jinja utilities for Invenio."""
+"""Jinja filters for Invenio."""
 
 from __future__ import absolute_import, print_function
-
-from flask import Blueprint
-
-from .filters.datetime import from_isodate, from_isodatetime
-
-
-class InvenioFormatter(object):
-    """Invenio-Formatter extension."""
-
-    def __init__(self, app=None):
-        """Extension initialization."""
-        if app:
-            self.init_app(app)
-
-    def init_app(self, app):
-        """Flask application initialization."""
-        app.jinja_env.filters.update(
-            from_isodate=from_isodate,
-            from_isodatetime=from_isodatetime,
-        )
-
-        app.register_blueprint(Blueprint(
-            'invenio_formatter', __name__, template_folder='templates'))
-
-        app.extensions['invenio-formatter'] = self

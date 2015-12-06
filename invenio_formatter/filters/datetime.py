@@ -22,14 +22,20 @@
 # waive the privileges and immunities granted to it by virtue of its status
 # as an Intergovernmental Organization or submit itself to any jurisdiction.
 
-"""Jinja utilities for Invenio."""
+"""Datetime Jinja filters."""
 
 from __future__ import absolute_import, print_function
 
-from flask import Blueprint
+import arrow
 
-blueprint = Blueprint(
-    'invenio_formatter',
-    __name__,
-    template_folder='templates',
-)
+
+def from_isodate(value, strict=False):
+    """Convert an ISO formatted date into a Date object."""
+    if value or strict:
+        return arrow.get(value).date()
+
+
+def from_isodatetime(value, strict=False):
+    """Convert an ISO formatted date into a Date object."""
+    if value or strict:
+        return arrow.get(value).datetime

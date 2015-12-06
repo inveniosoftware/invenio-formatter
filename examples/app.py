@@ -36,9 +36,11 @@ Run example development server:
 from __future__ import absolute_import, print_function
 
 from flask import Flask
+from flask_cli import FlaskCLI
 
 from invenio_formatter import InvenioFormatter
 
 # Create Flask application
 app = Flask(__name__)
+FlaskCLI(app)
 InvenioFormatter(app)
