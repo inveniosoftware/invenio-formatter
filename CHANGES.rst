@@ -25,8 +25,8 @@
 Changes
 =======
 
-Version 1.0.0 (released TBD)
-----------------------------
+Version 1.0.0 (released 2015-12-09)
+-----------------------------------
 
 Incompatible changes
 ~~~~~~~~~~~~~~~~~~~~

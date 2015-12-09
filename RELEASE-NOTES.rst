@@ -2,7 +2,7 @@
  Invenio-Formatter v1.0.0
 ==========================
 
-Invenio-Formatter v1.0.0 was released on TBD, 2015.
+Invenio-Formatter v1.0.0 was released on December 9, 2015.
 
 About
 -----
