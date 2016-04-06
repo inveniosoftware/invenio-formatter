@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # This file is part of Invenio.
-# Copyright (C) 2015 CERN.
+# Copyright (C) 2016 CERN.
 #
 # Invenio is free software; you can redistribute it
 # and/or modify it under the terms of the GNU General Public License as
@@ -22,33 +22,27 @@
 # waive the privileges and immunities granted to it by virtue of its status
 # as an Intergovernmental Organization or submit itself to any jurisdiction.
 
-"""Jinja utilities for Invenio."""
+"""Tests for template context processors."""
 
 from __future__ import absolute_import, print_function
 
-from .context_processors.badges import badges_processor
-from .filters.datetime import from_isodate, from_isodatetime
-from .views import blueprint
+
+def test_views_badge_svg(app):
+    """Test context processor badge generating a SVG."""
+    with app.test_request_context():
+        with app.test_client() as client:
+            response = client.get('/badge/title/value.svg')
+            response_data = response.get_data(as_text=True).replace(
+                    '\n', '').replace(' ', '')
+            assert 'fill-opacity=".3">title</text>' in response_data
+            assert 'y="14">title</text>' in response_data
+            assert 'fill-opacity=".3">value</text>' in response_data
+            assert 'y="14">value</text>' in response_data
 
 
-class InvenioFormatter(object):
-    """Invenio-Formatter extension."""
-
-    def __init__(self, app=None):
-        """Extension initialization."""
-        if app:
-            self.init_app(app)
-
-    def init_app(self, app):
-        """Flask application initialization."""
-        app.jinja_env.filters.update(
-            from_isodate=from_isodate,
-            from_isodatetime=from_isodatetime,
-        )
-
-        # Registration of context processors.
-        app.context_processor(badges_processor)
-
-        app.register_blueprint(blueprint)
-
-        app.extensions['invenio-formatter'] = self
+def test_views_badge_png(app):
+    """Test context processor badge generating a SVG."""
+    with app.test_request_context():
+        with app.test_client() as client:
+            response = client.get('/badge/title/value.png')
+            assert b'\x89PNG\r\n' in response.data

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # This file is part of Invenio.
-# Copyright (C) 2015 CERN.
+# Copyright (C) 2016 CERN.
 #
 # Invenio is free software; you can redistribute it
 # and/or modify it under the terms of the GNU General Public License as
@@ -22,33 +22,32 @@
 # waive the privileges and immunities granted to it by virtue of its status
 # as an Intergovernmental Organization or submit itself to any jurisdiction.
 
-"""Jinja utilities for Invenio."""
+"""Tests for template context processors."""
 
 from __future__ import absolute_import, print_function
 
-from .context_processors.badges import badges_processor
-from .filters.datetime import from_isodate, from_isodatetime
-from .views import blueprint
+from flask import render_template_string
 
 
-class InvenioFormatter(object):
-    """Invenio-Formatter extension."""
+def test_context_processor_badge_svg(app):
+    """Test context processor badge generating a SVG."""
+    template = r"""
+    {{ badge_svg('DOI','10.1234/zenodo.12345') }}
+    """
+    with app.test_request_context():
+        html = render_template_string(template)
+        html = html.replace('\n', '').replace(' ', '')
+        assert 'fill-opacity=".3">DOI</text>' in html
+        assert 'y="14">DOI</text>' in html
+        assert 'fill-opacity=".3">10.1234/zenodo.12345</text>' in html
+        assert 'y="14">10.1234/zenodo.12345</text>' in html
 
-    def __init__(self, app=None):
-        """Extension initialization."""
-        if app:
-            self.init_app(app)
 
-    def init_app(self, app):
-        """Flask application initialization."""
-        app.jinja_env.filters.update(
-            from_isodate=from_isodate,
-            from_isodatetime=from_isodatetime,
-        )
-
-        # Registration of context processors.
-        app.context_processor(badges_processor)
-
-        app.register_blueprint(blueprint)
-
-        app.extensions['invenio-formatter'] = self
+def test_context_processor_badge_png(app):
+    """Test context processor badge generating a PNG."""
+    template = r"""
+    {{ badge_png('this_is_the_title','this_is_the_value') }}
+    """
+    with app.test_request_context():
+        html = render_template_string(template)
+        assert 'data:image/png;base64,' in html

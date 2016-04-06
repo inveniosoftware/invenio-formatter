@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # This file is part of Invenio.
-# Copyright (C) 2015 CERN.
+# Copyright (C) 2016 CERN.
 #
 # Invenio is free software; you can redistribute it
 # and/or modify it under the terms of the GNU General Public License as
@@ -22,33 +22,6 @@
 # waive the privileges and immunities granted to it by virtue of its status
 # as an Intergovernmental Organization or submit itself to any jurisdiction.
 
-"""Jinja utilities for Invenio."""
+"""Context processors for Invenio."""
 
 from __future__ import absolute_import, print_function
-
-from .context_processors.badges import badges_processor
-from .filters.datetime import from_isodate, from_isodatetime
-from .views import blueprint
-
-
-class InvenioFormatter(object):
-    """Invenio-Formatter extension."""
-
-    def __init__(self, app=None):
-        """Extension initialization."""
-        if app:
-            self.init_app(app)
-
-    def init_app(self, app):
-        """Flask application initialization."""
-        app.jinja_env.filters.update(
-            from_isodate=from_isodate,
-            from_isodatetime=from_isodatetime,
-        )
-
-        # Registration of context processors.
-        app.context_processor(badges_processor)
-
-        app.register_blueprint(blueprint)
-
-        app.extensions['invenio-formatter'] = self

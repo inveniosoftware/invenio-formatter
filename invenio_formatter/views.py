@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # This file is part of Invenio.
-# Copyright (C) 2015 CERN.
+# Copyright (C) 2016 CERN.
 #
 # Invenio is free software; you can redistribute it
 # and/or modify it under the terms of the GNU General Public License as
@@ -22,33 +22,30 @@
 # waive the privileges and immunities granted to it by virtue of its status
 # as an Intergovernmental Organization or submit itself to any jurisdiction.
 
-"""Jinja utilities for Invenio."""
+"""View method for Invenio-Formatter."""
 
 from __future__ import absolute_import, print_function
 
-from .context_processors.badges import badges_processor
-from .filters.datetime import from_isodate, from_isodatetime
-from .views import blueprint
+from flask import Blueprint, Response
+
+from .context_processors.badges import generate_badge_png, generate_badge_svg
+
+blueprint = Blueprint(
+    'invenio_formatter',
+    __name__,
+    template_folder='templates',
+)
 
 
-class InvenioFormatter(object):
-    """Invenio-Formatter extension."""
+@blueprint.route('/badge/<title>/<path:value>.svg')
+def badge_svg(title, value):
+    """Generate a SVG badge response."""
+    return Response(generate_badge_svg(title, value),
+                    mimetype='image/svg+xml')
 
-    def __init__(self, app=None):
-        """Extension initialization."""
-        if app:
-            self.init_app(app)
 
-    def init_app(self, app):
-        """Flask application initialization."""
-        app.jinja_env.filters.update(
-            from_isodate=from_isodate,
-            from_isodatetime=from_isodatetime,
-        )
-
-        # Registration of context processors.
-        app.context_processor(badges_processor)
-
-        app.register_blueprint(blueprint)
-
-        app.extensions['invenio-formatter'] = self
+@blueprint.route('/badge/<title>/<path:value>.png')
+def badge_png(title, value):
+    """Generate a PNG badge response."""
+    return Response(generate_badge_png(title, value),
+                    mimetype='image/png')

@@ -80,3 +80,16 @@ def test_meta_highwire(app):
         assert '<meta name="citation_author"' \
                ' content="Smith, Joe" />' \
                in html
+
+
+def test_meta_badges_formats_list(app):
+    """Test macro badges_formats_list."""
+    template = r"""
+    {% from "invenio_formatter/macros/meta.html" import badges_formats_list %}
+    {{ badges_formats_list('image.svg', 'link') }}
+    """
+    with app.test_request_context():
+        html = render_template_string(template, today=date(2002, 1, 1))
+        assert '<pre>&lt;a href="link"&gt;&lt;img src="image.svg"' in html
+        assert '<pre>.. image:: image.svg' in html
+        assert '<pre>[![DOI](image.svg)](link)' in html

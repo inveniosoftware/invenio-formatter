@@ -23,6 +23,11 @@
 # as an Intergovernmental Organization or submit itself to any jurisdiction.
 
 
+addons:
+  apt:
+    packages:
+      - libfreetype6-dev
+
 notifications:
   email: false
 

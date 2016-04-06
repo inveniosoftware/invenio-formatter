@@ -64,6 +64,8 @@ install_requires = [
     'Flask-BabelEx>=0.9.2',
     'Flask>=0.10',
     'Jinja2>=2.8',
+    'CairoSVG>=1.0.20',
+    'pillow>=3.2.0',
 ]
 
 packages = find_packages()
