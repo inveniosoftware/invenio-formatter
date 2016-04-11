@@ -85,7 +85,8 @@ def test_meta_highwire(app):
 def test_meta_badges_formats_list(app):
     """Test macro badges_formats_list."""
     template = r"""
-    {% from "invenio_formatter/macros/meta.html" import badges_formats_list %}
+    {% from "invenio_formatter/macros/badges.html" import badges_formats_list
+     %}
     {{ badges_formats_list('image.svg', 'link') }}
     """
     with app.test_request_context():
