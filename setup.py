@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # This file is part of Invenio.
-# Copyright (C) 2015 CERN.
+# Copyright (C) 2015, 2016 CERN.
 #
 # Invenio is free software; you can redistribute it
 # and/or modify it under the terms of the GNU General Public License as
@@ -35,6 +35,7 @@ tests_require = [
     'check-manifest>=0.25',
     'coverage>=4.0',
     'isort>=4.2.2',
+    'mock>=1.3.0',
     'pydocstyle>=1.0.0',
     'pytest-cache>=1.0',
     'pytest-cov>=1.8.0',
@@ -45,6 +46,10 @@ tests_require = [
 extras_require = {
     'docs': [
         'Sphinx>=1.3',
+    ],
+    'badges': [
+        'CairoSVG>=1.0.20',
+        'Pillow>=3.2.0',
     ],
     'tests': tests_require,
 }
@@ -60,11 +65,9 @@ setup_requires = [
 
 install_requires = [
     'arrow>=0.7.0',
-    'CairoSVG>=1.0.20',
     'Flask-BabelEx>=0.9.2',
     'Flask>=0.10',
     'Jinja2>=2.8',
-    'pillow>=3.2.0',
 ]
 
 packages = find_packages()

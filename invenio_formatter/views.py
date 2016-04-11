@@ -26,26 +26,36 @@
 
 from __future__ import absolute_import, print_function
 
-from flask import Blueprint, Response
-
-from .context_processors.badges import generate_badge_png, generate_badge_svg
-
-blueprint = Blueprint(
-    'invenio_formatter',
-    __name__,
-    template_folder='templates',
-)
+from flask import Blueprint, Response, current_app
 
 
-@blueprint.route('/badge/<title>/<path:value>.svg')
-def badge_svg(title, value):
-    """Generate a SVG badge response."""
-    return Response(generate_badge_svg(title, value),
-                    mimetype='image/svg+xml')
+def create_badge_blueprint(allowed_types):
+    """Create the badge blueprint."""
+    from invenio_formatter.context_processors.badges import \
+        generate_badge_png, generate_badge_svg
 
+    blueprint = Blueprint(
+        'invenio_formatter_badges',
+        __name__,
+        template_folder='templates',
+    )
 
-@blueprint.route('/badge/<title>/<path:value>.png')
-def badge_png(title, value):
-    """Generate a PNG badge response."""
-    return Response(generate_badge_png(title, value),
-                    mimetype='image/png')
+    @blueprint.route(
+        '/badge/<any({0}):title>/<path:value>.<any(svg, png):ext>'.format(
+            ', '.join(allowed_types)))
+    def badge(title, value, ext='svg'):
+        """Generate a badge response."""
+        if ext == 'svg':
+            generator = generate_badge_svg
+            mimetype = 'image/svg+xml'
+        elif ext == 'png':
+            generator = generate_badge_png
+            mimetype = 'image/png'
+        return Response(
+            generator(
+                current_app.config['FORMATTER_BADGES_TITLE_MAPPING'].get(
+                    title, title),
+                value),
+            mimetype=mimetype)
+
+    return blueprint
