@@ -32,7 +32,7 @@ from flask import render_template_string
 def test_context_processor_badge_svg(app):
     """Test context processor badge generating a SVG."""
     template = r"""
-    {{ badge_svg('DOI','10.1234/zenodo.12345') }}
+    {{ badge_svg('DOI','10.1234/zenodo.12345')|safe }}
     """
     with app.test_request_context():
         html = render_template_string(template)
