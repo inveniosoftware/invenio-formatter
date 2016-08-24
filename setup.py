@@ -61,12 +61,13 @@ for reqs in extras_require.values():
 setup_requires = [
     'Babel>=1.3',
     'pytest-runner>=2.7.0',
+
 ]
 
 install_requires = [
+    'Flask>=0.11.1',
     'arrow>=0.7.0',
     'Flask-BabelEx>=0.9.2',
-    'Flask>=0.10',
     'Jinja2>=2.8',
 ]
 
