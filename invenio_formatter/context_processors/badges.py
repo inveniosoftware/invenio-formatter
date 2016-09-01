@@ -33,7 +33,11 @@ from PIL import Image, ImageDraw, ImageFont
 
 
 def get_text_length(*args):
-    """Measure the size of string rendered with a TTF no-nomospaced fonts."""
+    r"""Measure the size of string rendered with a TTF no-nomospaced fonts.
+
+    :param \*args: List of strings to be measured.
+    :returns: The length of the strings.
+    """
     txt = Image.new('RGBA', (16, 16), (255, 255, 255, 0))
     d = ImageDraw.Draw(txt)
     font = ImageFont.truetype("DejaVuSans", 11)
@@ -44,7 +48,13 @@ def get_text_length(*args):
 
 
 def generate_badge_svg(title, value, color='#007ec6'):
-    """Generate the SVG."""
+    """Generate the SVG.
+
+    :param title: The badge title.
+    :param value: The badge content.
+    :param color: The badge color. (Default: ``'#007ec6'``)
+    :returns: The SVG badge.
+    """
     (title_length, value_length) = get_text_length(title, value)
     return '''<svg xmlns="http://www.w3.org/2000/svg"
      width="{width}" height="20">

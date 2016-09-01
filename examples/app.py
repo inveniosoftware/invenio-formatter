@@ -30,17 +30,33 @@ Run example development server:
 .. code-block:: console
 
    $ cd examples
-   $ flask -a app.py --debug run
+   $ export FLASK_APP=app.py
+   $ flask run
 """
 
 from __future__ import absolute_import, print_function
 
-from flask import Flask
-from flask_cli import FlaskCLI
+import datetime
+from os.path import dirname, join
+
+import jinja2
+from flask import Flask, render_template
 
 from invenio_formatter import InvenioFormatter
 
 # Create Flask application
 app = Flask(__name__)
-FlaskCLI(app)
 InvenioFormatter(app)
+
+# Set jinja loader to first grab templates from the app's folder.
+app.jinja_loader = jinja2.ChoiceLoader([
+    jinja2.FileSystemLoader(join(dirname(__file__), "templates")),
+    app.jinja_loader
+])
+
+
+@app.route('/', methods=['GET'])
+def index():
+    """Example format date."""
+    mydate = datetime.date.today()
+    return render_template('index.html', mydate=mydate)

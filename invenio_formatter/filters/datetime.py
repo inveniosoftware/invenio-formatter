@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # This file is part of Invenio.
-# Copyright (C) 2015 CERN.
+# Copyright (C) 2015, 2016 CERN.
 #
 # Invenio is free software; you can redistribute it
 # and/or modify it under the terms of the GNU General Public License as
@@ -30,12 +30,26 @@ import arrow
 
 
 def from_isodate(value, strict=False):
-    """Convert an ISO formatted date into a Date object."""
+    """Convert an ISO formatted date into a Date object.
+
+    :param value: The ISO formatted date.
+    :param strict: If value is ``None``, then if strict is ``True`` it returns
+        the Date object of today, otherwise it returns ``None``.
+        (Default: ``False``)
+    :returns: The Date object or ``None``.
+    """
     if value or strict:
         return arrow.get(value).date()
 
 
 def from_isodatetime(value, strict=False):
-    """Convert an ISO formatted date into a Date object."""
+    """Convert an ISO formatted datetime into a Date object.
+
+    :param value: The ISO formatted datetime.
+    :param strict: If value is ``None``, then if strict is ``True`` it returns
+        the Date object of today, otherwise it returns ``None``.
+        (Default: ``False``)
+    :returns: The Date object or ``None``.
+    """
     if value or strict:
         return arrow.get(value).datetime

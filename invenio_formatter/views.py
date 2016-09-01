@@ -30,7 +30,11 @@ from flask import Blueprint, Response, current_app
 
 
 def create_badge_blueprint(allowed_types):
-    """Create the badge blueprint."""
+    """Create the badge blueprint.
+
+    :param allowed_types: A list of allowed types.
+    :returns: A Flask blueprint.
+    """
     from invenio_formatter.context_processors.badges import \
         generate_badge_png, generate_badge_svg
 

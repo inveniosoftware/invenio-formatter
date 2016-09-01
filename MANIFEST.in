@@ -36,6 +36,7 @@ recursive-include docs *.py
 recursive-include docs *.rst
 recursive-include docs Makefile
 recursive-include examples *.py
+recursive-include examples *.html
 recursive-include invenio_formatter *.html
 recursive-include invenio_formatter *.po *.pot *.mo
 recursive-include tests *.py

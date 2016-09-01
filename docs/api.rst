@@ -25,6 +25,29 @@
 API Docs
 ========
 
-invenio_formatter
------------------
+.. automodule:: invenio_formatter.ext
+   :members:
 
+Configuration
+-------------
+
+.. automodule:: invenio_formatter.config
+   :members:
+
+Context preprocessors
+---------------------
+
+.. automodule:: invenio_formatter.context_processors.badges
+   :members:
+
+Filters
+-------
+
+.. automodule:: invenio_formatter.filters.datetime
+   :members:
+
+Views
+-----
+
+.. automodule:: invenio_formatter.views
+   :members:

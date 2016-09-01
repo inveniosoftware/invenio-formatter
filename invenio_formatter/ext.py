@@ -37,12 +37,18 @@ class InvenioFormatter(object):
     """Invenio-Formatter extension."""
 
     def __init__(self, app=None):
-        """Extension initialization."""
+        """Extension initialization.
+
+        :param app: The Flask application. (Default: ``None``)
+        """
         if app:
             self.init_app(app)
 
     def init_app(self, app):
-        """Flask application initialization."""
+        """Flask application initialization.
+
+        :param app: The Flask application.
+        """
         self.init_config(app)
 
         # Install datetime helpers.
@@ -64,7 +70,13 @@ class InvenioFormatter(object):
         app.extensions['invenio-formatter'] = self
 
     def init_config(self, app):
-        """Initialize configuration."""
+        """Initialize configuration.
+
+        .. note:: If CairoSVG is installed then the configuration
+            ``FORMATTER_BADGES_ENABLE`` is ``True``.
+
+        :param app: The Flask application.
+        """
         try:
             get_distribution('CairoSVG')
             has_cairo = True
