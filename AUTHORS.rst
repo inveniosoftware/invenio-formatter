@@ -29,6 +29,7 @@ Jinja utilities for Invenio.
 
 - Adrian Pawel Baran <adrian.pawel.baran@cern.ch>
 - Alessio Deiana <alessio.deiana@cern.ch>
+- Alizee Pace <alizee.pace@gmail.com>
 - Benoit Thiell <bthiell@cfa.harvard.edu>
 - Björn Oltmanns <bjoern.oltmanns@gmail.com>
 - Christopher Dickinson <christopher.dickinson@cern.ch>
@@ -47,7 +48,7 @@ Jinja utilities for Invenio.
 - Jaime García <jaime.garcia.llopis@gmail.com>
 - Jan Aage Lavik <jan.age.lavik@cern.ch>
 - Jan Iwaszkiewicz <jan.iwaszkiewicz@cern.ch>
-- Javier Martin <javier.martin.montull@cern.ch>
+- Javier Delgado <javier.delgado.fernandez@cern.ch>
 - Javier Martin Montull <javier.martin.montull@cern.ch>
 - Jerome Caffaro <jerome.caffaro@cern.ch>
 - Jiri Kuncar <jiri.kuncar@cern.ch>
@@ -71,6 +72,7 @@ Jinja utilities for Invenio.
 - Piotr Praczyk <piotr.praczyk@gmail.com>
 - Raja Sripada <rsripada@cern.ch>
 - Raquel Jimenez Encinar <r.jimenez.encinar@gmail.com>
+- Sami Hiltunen <sami.mikael.hiltunen@cern.ch>
 - Samuele Carli <samuele.carli@cern.ch>
 - Samuele Kaplun <samuele.kaplun@cern.ch>
 - Stamen Todorov Peev <stamen.peev@cern.ch>
@@ -82,5 +84,4 @@ Jinja utilities for Invenio.
 - Valkyrie Savage <vasavage@gmail.com>
 - Yannick Tapparel <yannick.tapparel@cern.ch>
 - Yoan Blanc <yoan.blanc@cern.ch>
-- Kamil Neczaj <kneczaj@gmail.com>
 - Øystein Blixhavn <oystein@blixhavn.no>

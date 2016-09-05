@@ -26,9 +26,9 @@
 
 from __future__ import absolute_import, print_function
 
-import cairosvg
-
 from base64 import b64encode
+
+import cairosvg
 from PIL import Image, ImageDraw, ImageFont
 
 
@@ -94,8 +94,8 @@ def generate_badge_svg(title, value, color='#007ec6'):
         title_width=title_length + 11,
         value_width=value_length + 11,
         width=title_length + value_length + 22,
-        title_position=title_length/2 + 6,
-        value_position=title_length + value_length/2 + 16,
+        title_position=title_length / 2 + 6,
+        value_position=title_length + value_length / 2 + 16,
         title=title,
         value=value,
         color=color,
@@ -121,6 +121,6 @@ def badges_processor():
         return 'data:image/png;base64,{0}'.format(png_base64)
 
     return dict(
-            badge_svg=badge_svg,
-            badge_png=badge_png
-        )
+        badge_svg=badge_svg,
+        badge_png=badge_png
+    )
