@@ -25,13 +25,25 @@
 
 """Minimal Flask application example for development.
 
+Install requirements:
+
+.. code-block:: console
+
+    $ pip install -e .[all]
+    $ cd examples
+
 Run example development server:
 
 .. code-block:: console
 
-   $ cd examples
-   $ export FLASK_APP=app.py
-   $ flask run
+    $ FLASK_APP=app.py flask run --debugger -p 5000
+
+Test the demo:
+
+.. code-block:: console
+
+    curl -v -XGET 'http://localhost:5000/'
+
 """
 
 from __future__ import absolute_import, print_function
