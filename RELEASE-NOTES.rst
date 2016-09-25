@@ -24,7 +24,7 @@ Installation
 Documentation
 -------------
 
-   http://pythonhosted.org/invenio-formatter/
+   http://invenio-formatter.readthedocs.io/
 
 Happy hacking and thanks for flying Invenio-Formatter.
 
