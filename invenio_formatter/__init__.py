@@ -22,7 +22,12 @@
 # waive the privileges and immunities granted to it by virtue of its status
 # as an Intergovernmental Organization or submit itself to any jurisdiction.
 
-"""Jinja utilities for Invenio."""
+"""Jinja utilities for Invenio applications.
+
+Quick start
+-----------
+This section presents a minimal working example of the Invenio-Formatter.
+"""
 
 from __future__ import absolute_import, print_function
 
