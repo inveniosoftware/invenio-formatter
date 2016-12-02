@@ -58,6 +58,7 @@ from invenio_formatter import InvenioFormatter
 
 # Create Flask application
 app = Flask(__name__)
+
 InvenioFormatter(app)
 
 # Set jinja loader to first grab templates from the app's folder.
