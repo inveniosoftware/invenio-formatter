@@ -28,12 +28,6 @@ API Docs
 .. automodule:: invenio_formatter.ext
    :members:
 
-Configuration
--------------
-
-.. automodule:: invenio_formatter.config
-   :members:
-
 Context preprocessors
 ---------------------
 

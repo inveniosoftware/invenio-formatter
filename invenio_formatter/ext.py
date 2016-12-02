@@ -69,7 +69,8 @@ class InvenioFormatter(object):
 
         app.extensions['invenio-formatter'] = self
 
-    def init_config(self, app):
+    @staticmethod
+    def init_config(app):
         """Initialize configuration.
 
         .. note:: If CairoSVG is installed then the configuration

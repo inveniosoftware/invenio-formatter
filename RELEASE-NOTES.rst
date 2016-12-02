@@ -24,13 +24,13 @@ Installation
 Documentation
 -------------
 
-   http://invenio-formatter.readthedocs.io/
+   https://invenio-formatter.readthedocs.io/
 
 Happy hacking and thanks for flying Invenio-Formatter.
 
 | Invenio Development Team
 |   Email: info@inveniosoftware.org
 |   IRC: #invenio on irc.freenode.net
-|   Twitter: http://twitter.com/inveniosoftware
+|   Twitter: https://twitter.com/inveniosoftware
 |   GitHub: https://github.com/inveniosoftware/invenio-formatter
 |   URL: http://inveniosoftware.org

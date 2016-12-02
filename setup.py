@@ -85,7 +85,7 @@ setup(
     version=version,
     description=__doc__,
     long_description=readme + '\n\n' + history,
-    keywords='invenio jinja2 flask utilities',
+    keywords='invenio jinja2 flask',
     license='GPLv2',
     author='CERN',
     author_email='info@inveniosoftware.org',
@@ -120,6 +120,6 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
-        'Development Status :: 1 - Planning',
+        'Development Status :: 4 - Beta',
     ],
 )
