@@ -48,7 +48,8 @@ extras_require = {
         'Sphinx>=1.4.2',
     ],
     'badges': [
-        'CairoSVG>=1.0.20',
+        # CairoSVG 2.0.0 only supports Python 3
+        'CairoSVG>=1.0.20,<2.0.0',
         'Pillow>=3.2.0',
     ],
     'tests': tests_require,
