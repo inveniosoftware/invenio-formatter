@@ -62,4 +62,6 @@ def test_example_app(example_app):
     # Testing get index page
     cmd = 'curl http://127.0.0.1:5000/'
     output = subprocess.check_output(cmd, shell=True).decode("utf-8")
-    assert 'Today is {0}'.format(datetime.date.today()) == output
+    expected = 'Today is {0}\n<img src="/badge/DOI/invenio.12345.svg">' \
+        '</img>'.format(datetime.date.today())
+    assert expected == output
