@@ -100,7 +100,7 @@ Ready to contribute? Here's how to set up `invenio-formatter` for local developm
           -m "* NEW Adds your new feature."
           -m "* FIX Fixes an existing issue."
           -m "* BETTER Improves and existing feature."
-          -m "* Changes something that should not be visible in release notes"
+          -m "* Changes something that should not be visible in release notes."
       $ git push origin name-of-your-bugfix-or-feature
 
 7. Submit a pull request through the GitHub website.
