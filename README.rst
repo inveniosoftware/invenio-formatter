@@ -41,9 +41,7 @@
         :target: https://github.com/inveniosoftware/invenio-formatter/blob/master/LICENSE
 
 
-Jinja utilities for Invenio.
-
 *This is an experimental developer preview release.*
 
-* Free software: GPLv2 license
-* Documentation: https://invenio-formatter.readthedocs.io/
+Further documentation is available on
+https://invenio-formatter.readthedocs.io/

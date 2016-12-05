@@ -1,2 +1,3 @@
 {% set mydate = mydate|from_isodate -%}
-today is {{ mydate.strftime('%Y-%m-%d') }}
+Today is {{ mydate.strftime('%Y-%m-%d') }}
+<img src="{{ url_for('invenio_formatter_badges.badge', title='DOI', value='invenio.12345', ext='svg') }}"></img>

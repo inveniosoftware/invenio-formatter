@@ -22,12 +22,17 @@
 # waive the privileges and immunities granted to it by virtue of its status
 # as an Intergovernmental Organization or submit itself to any jurisdiction.
 
+"""Sphinx configuration."""
+
 from __future__ import print_function
 
 import os
+import sys
 
 import sphinx.environment
-from docutils.utils import get_source_line
+
+# Plug example application into module path
+sys.path.append('examples')
 
 # -- General configuration ------------------------------------------------
 
@@ -329,7 +334,9 @@ texinfo_documents = [
 
 
 # Example configuration for intersphinx: refer to the Python standard library.
-intersphinx_mapping = {'https://docs.python.org/': None}
+intersphinx_mapping = {
+    'python': ('https://docs.python.org/', None),
+}
 
 # Autodoc configuraton.
 autoclass_content = 'both'

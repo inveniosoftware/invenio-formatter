@@ -23,27 +23,27 @@
 # as an Intergovernmental Organization or submit itself to any jurisdiction.
 
 
-"""Minimal Flask application example for development.
+"""Minimal Flask application example.
 
-Install requirements:
+First install Invenio-Formatter by running:
 
 .. code-block:: console
 
     $ pip install -e .[all]
     $ cd examples
 
-Run example development server:
+Next, start the development server:
 
 .. code-block:: console
 
-    $ FLASK_APP=app.py flask run --debugger -p 5000
+   $ export FLASK_APP=app.py FLASK_DEBUG=1
+   $ flask run
 
-Test the demo:
+and open the example application in your browser:
 
 .. code-block:: console
 
-    curl -v -XGET 'http://localhost:5000/'
-
+    $ open http://127.0.0.1:5000/
 """
 
 from __future__ import absolute_import, print_function
@@ -58,6 +58,7 @@ from invenio_formatter import InvenioFormatter
 
 # Create Flask application
 app = Flask(__name__)
+
 InvenioFormatter(app)
 
 # Set jinja loader to first grab templates from the app's folder.

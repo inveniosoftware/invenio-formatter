@@ -24,7 +24,7 @@ development headers:
 
 OS X
 ~~~~
-Install above dependencies with Homebrew:
+Install the dependencies above with Homebrew:
 
 .. code-block:: console
 
