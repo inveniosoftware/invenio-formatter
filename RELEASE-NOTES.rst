@@ -1,15 +1,13 @@
 ============================
- Invenio-Formatter v1.0.0a2
+ Invenio-Formatter v1.0.0b1
 ============================
 
-Invenio-Formatter v1.0.0a2 was released on April 22, 2016.
+Invenio-Formatter v1.0.0b1 was released on December 8, 2016.
 
 About
 -----
 
 Jinja utilities for Invenio.
-
-*This is an experimental developer preview release.*
 
 What's new
 ----------
@@ -19,7 +17,7 @@ What's new
 Installation
 ------------
 
-   $ pip install invenio-formatter==1.0.0a2
+   $ pip install invenio-formatter==1.0.0b1
 
 Documentation
 -------------
