@@ -53,7 +53,7 @@ Create a new Flask application and set some configuration for badge generation:
     By default the ``template_folder`` is the directory
     ``templates`` at the root of your flask application.
 
-load the Invenio-Formatter extension and run the application:
+Load the Invenio-Formatter extension and run the application:
 
 >>> from invenio_formatter import InvenioFormatter
 >>> ext_fmt = InvenioFormatter(app)
