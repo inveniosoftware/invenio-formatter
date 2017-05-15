@@ -1,6 +1,6 @@
 {#
 # This file is part of Invenio.
-# Copyright (C) 2015, 2016 CERN.
+# Copyright (C) 2015, 2016, 2017 CERN.
 #
 # Invenio is free software; you can redistribute it
 # and/or modify it under the terms of the GNU General Public License as
@@ -58,7 +58,7 @@
     <meta name="citation_publisher" content="{{publisher}}" />
     {%- endif %}
     {%- if publication_date %}
-    <meta name="citation_publication_date" content="{{publication_date.strftime('%Y/%m/%d')}}" />
+    <meta name="citation_publication_date" content="{{publication_date|to_arrow|format_arrow('YYYY/MM/DD')}}" />
     {%- endif %}
     {%- if doi %}
     <meta name="citation_doi" content="{{doi}}" />

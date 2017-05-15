@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # This file is part of Invenio.
-# Copyright (C) 2015, 2016 CERN.
+# Copyright (C) 2015, 2016, 2017 CERN.
 #
 # Invenio is free software; you can redistribute it
 # and/or modify it under the terms of the GNU General Public License as
@@ -53,3 +53,25 @@ def from_isodatetime(value, strict=False):
     """
     if value or strict:
         return arrow.get(value).datetime
+
+
+def format_arrow(value, format_string):
+    """Format an arrow datetime object.
+
+    :param value: The arrow datetime object.
+    :param format_string: The date format string
+    :returns: Returns a string representation of the given arrow datetime
+        object, formatted according to the given format string.
+
+    .. note::
+        Do not use this filter to format date/times presented to an end
+        user. Instead use ``datetimeformat`` or ``dateformat`` from
+        Invenio-I18N.
+    """
+    assert isinstance(value, arrow.Arrow)
+    return value.format(format_string)
+
+
+def to_arrow(value):
+    """Convert a Date object to an arrow datetime object."""
+    return arrow.get(value)
