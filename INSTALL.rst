@@ -22,6 +22,14 @@ development headers:
 - Cairo
 - `DejaVu Sans font <http://dejavu-fonts.org/wiki/Main_Page>`_
 
+Linux
+~~~~~
+Install the dependencies with your package manager. For Ubuntu or Debian:
+
+.. code-block:: console
+
+   $ sudo apt-get install libcairo2-dev
+
 OS X
 ~~~~
 Install the dependencies above with Homebrew:
