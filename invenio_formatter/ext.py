@@ -29,7 +29,8 @@ from __future__ import absolute_import, print_function
 from pkg_resources import DistributionNotFound, get_distribution
 
 from . import config
-from .filters.datetime import from_isodate, from_isodatetime
+from .filters.datetime import format_arrow, from_isodate, from_isodatetime, \
+    to_arrow
 from .views import create_badge_blueprint
 
 
@@ -55,6 +56,8 @@ class InvenioFormatter(object):
         app.jinja_env.filters.update(
             from_isodate=from_isodate,
             from_isodatetime=from_isodatetime,
+            to_arrow=to_arrow,
+            format_arrow=format_arrow,
         )
 
         if app.config['FORMATTER_BADGES_ENABLE']:

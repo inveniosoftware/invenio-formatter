@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # This file is part of Invenio.
-# Copyright (C) 2015 CERN.
+# Copyright (C) 2015, 2016, 2017 CERN.
 #
 # Invenio is free software; you can redistribute it
 # and/or modify it under the terms of the GNU General Public License as
@@ -36,8 +36,7 @@ and save it to some location (e.g.: ``/home/myuser/templates/index.html``)
 
 .. code-block:: html
 
-    {% set mydate = mydate|from_isodate -%}
-    Today is {{ mydate.strftime('%Y-%m-%d') }}
+    Today is {{ mydate|to_arrow|format_arrow('YYYY-MM-DD') }}
 
     Your book: {{ badge_svg('isbn','9780399547331')|safe }}
 
