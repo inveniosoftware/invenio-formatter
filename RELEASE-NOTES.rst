@@ -1,8 +1,8 @@
 ============================
- Invenio-Formatter v1.0.0b2
+ Invenio-Formatter v1.0.0b3
 ============================
 
-Invenio-Formatter v1.0.0b2 was released on June 1, 2017.
+Invenio-Formatter v1.0.0b3 was released on June 2, 2017.
 
 About
 -----
@@ -17,7 +17,7 @@ What's new
 Installation
 ------------
 
-   $ pip install invenio-formatter==1.0.0b2
+   $ pip install invenio-formatter==1.0.0b3
 
 Documentation
 -------------
