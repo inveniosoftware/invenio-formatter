@@ -25,6 +25,8 @@
 
 """Minimal Flask application example.
 
+SPHINX-START
+
 First install Invenio-Formatter by running:
 
 .. code-block:: console
@@ -44,6 +46,9 @@ and open the example application in your browser:
 .. code-block:: console
 
     $ open http://127.0.0.1:5000/
+
+SPHINX-END
+
 """
 
 from __future__ import absolute_import, print_function
