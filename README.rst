@@ -9,6 +9,9 @@
  Invenio-Formatter
 ===================
 
+.. image:: https://img.shields.io/github/license/inveniosoftware/invenio-formatter.svg
+        :target: https://github.com/inveniosoftware/invenio-formatter/blob/master/LICENSE
+
 .. image:: https://img.shields.io/travis/inveniosoftware/invenio-formatter.svg
         :target: https://travis-ci.org/inveniosoftware/invenio-formatter
 
