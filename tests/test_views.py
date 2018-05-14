@@ -61,3 +61,27 @@ def test_views_badge_png(app):
         with app.test_client() as client:
             response = client.get('/badge/DOI/value.png')
             assert b'\x89PNG\r\n' in response.data
+
+
+def test_views_badge_etag(app):
+    """Test Etag for badges."""
+    with app.app_context():
+        with app.test_client() as client:
+            response = client.get('/badge/DOI/value.png')
+            response = client.get(
+                '/badge/DOI/value.png',
+                headers={'If-None-Match': response.headers['ETag']})
+            assert response.status_code == 304
+
+
+def test_views_badge_no_cache_headers(app):
+    """Test Etag for badges."""
+    with app.app_context():
+        with app.test_client() as client:
+            response = client.get('/badge/DOI/value.png')
+            assert response.headers['Pragma'] == 'no-cache'
+            cache_control_values = ['no-cache', 'max-age']
+            assert set(cache_control_values).issubset(response.cache_control)
+            assert response.last_modified
+            assert response.expires
+            assert response.get_etag()[0]

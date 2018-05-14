@@ -15,3 +15,6 @@ FORMATTER_BADGES_ALLOWED_TITLES = ['DOI']
 
 FORMATTER_BADGES_TITLE_MAPPING = {}
 """Mapping of titles."""
+
+FORMATTER_BADGES_MAX_CACHE_AGE = 0
+"""The maximum amount of time a badge will be considered fresh."""
