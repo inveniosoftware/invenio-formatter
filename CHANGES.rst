@@ -8,6 +8,10 @@
 Changes
 =======
 
+Version 1.0.1 (released 2018-05-25)
+
+- Fixes issue with badges being cached.
+
 Version 1.0.0 (released 2018-03-23)
 
 - Initial public release.
