@@ -8,6 +8,10 @@
 Changes
 =======
 
+Version 1.0.2 (released 2019-07-29)
+
+- Adds HTML sanitization Jinja filter.
+
 Version 1.0.1 (released 2018-05-25)
 
 - Fixes issue with badges being cached.
