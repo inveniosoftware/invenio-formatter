@@ -47,5 +47,6 @@ def test_example_app(example_app):
     cmd = 'curl http://127.0.0.1:5000/'
     output = subprocess.check_output(cmd, shell=True).decode("utf-8")
     expected = '\nToday is {0}\n<img src="/badge/DOI/invenio.12345.svg">' \
-        '</img>'.format(datetime.date.today())
+        '</img>\nInvenio will not be hacked! &lt;a&gt;&lt;/a&gt;.'.format(
+            datetime.date.today())
     assert expected == output

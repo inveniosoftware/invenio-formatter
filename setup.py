@@ -54,6 +54,7 @@ setup_requires = [
 ]
 
 install_requires = [
+    'bleach>=3.1.0',
     'Flask>=0.11.1',
     'arrow>=0.7.0',
     'Flask-BabelEx>=0.9.2',

@@ -74,3 +74,20 @@ def test_from_isodatetime(app):
             "{{ '0001-01-01T00:00:00'|from_isodatetime"
             " > '1500-01-01'|from_isodatetime }}") == \
             "False"
+
+
+@pytest.mark.parametrize(
+    "malicious_html,sanitized_html",
+    [('<a href="data:text/html;base64,'
+      'PHNjcmlwdD5hbGVydChkb2N1bWVudC5kb21haW4pPC9zY3JpcHQ+Cg==">XSS</a>',
+      '&lt;a&gt;XSS&lt;/a&gt;'),
+     ('<svg/onload=alert(document.origin)>', ''),
+     ("<img src='x' onerror='alert(document.domain)' />", ''),
+     ]
+)
+def test_sanitize_html(app, malicious_html, sanitized_html):
+    """Test from_isodate filter."""
+    with app.test_request_context():
+        assert render_template_string(
+            "{{ content | sanitize_html() }}",
+            content=malicious_html) == sanitized_html

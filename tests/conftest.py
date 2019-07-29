@@ -22,7 +22,13 @@ def app():
     """Flask application fixture."""
     app = Flask('testapp')
     app.config.update(
-        TESTING=True
+        TESTING=True,
+        ALLOWED_HTML_TAGS=[
+            'a',
+        ],
+        ALLOWED_HTML_ATTRS={
+            'a': ['href'],
+        },
     )
     InvenioFormatter(app)
     return app
