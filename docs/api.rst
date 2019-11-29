@@ -23,6 +23,9 @@ Filters
 .. automodule:: invenio_formatter.filters.datetime
    :members:
 
+.. automodule:: invenio_formatter.filters.html
+   :members:
+
 Views
 -----
 
