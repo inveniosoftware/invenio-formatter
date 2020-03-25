@@ -27,7 +27,7 @@ development headers:
 
 - FreeType
 - Cairo
-- `DejaVu Sans font <http://dejavu-fonts.org/wiki/Main_Page>`_
+- `DejaVu Sans font <https://dejavu-fonts.github.io>`_
 
 Linux
 ~~~~~
