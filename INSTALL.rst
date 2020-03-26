@@ -44,5 +44,4 @@ Install the dependencies above with Homebrew:
 .. code-block:: console
 
    $ brew install cairo
-
-Download the DejaVu Sans font and install it on your system.
+   $ brew install homebrew/cask-fonts/font-dejavu-sans
