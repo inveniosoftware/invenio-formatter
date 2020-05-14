@@ -1,0 +1,60 @@
+{# -*- coding: utf-8 -*-
+
+  This file is part of Invenio.
+  Copyright (C) 2015-2018 CERN.
+
+  Invenio is free software; you can redistribute it and/or modify it
+  under the terms of the MIT License; see LICENSE file for more details.
+#}
+
+{# Create Twitter card meta-tags.
+ #
+ # Configuration variable THEME_TWITTERHANDLE should be set to your Twitter
+ # handle. See https://dev.twitter.com/cards/overview for details.
+ #}
+{%- macro meta_twittercard(title, description, card='summary', site='') %}
+    <meta name="twitter:card" content="{{card}}" />
+    <meta name="twitter:site" content="{{site or config.THEME_TWITTERHANDLE}}" />
+    <meta name="twitter:title" content="{{title}}" />
+    <meta name="twitter:description" content="{{description}}" />
+{%- endmacro %}
+
+
+{# Create OpenGraph meta-tags. #}
+{%- macro meta_opengraph(title, description, url='', site_name='') %}
+    <meta property="og:title" content="{{title}}" />
+    <meta property="og:description" content="{{description}}" />
+    <meta property="og:url" content="{{ url }}" />
+    <meta property="og:site_name" content="{{ site_name or config.THEME_SITENAME }}" />
+{%- endmacro %}
+
+
+{# Create HighWire Press meta-tags. #}
+{%- macro meta_highwire(title, description, authors=[], publisher='', publication_date='', doi='', keywords=[], url='', pdf_url='') %}
+    <meta name="description" content="{{description}}" />
+    <meta name="citation_title" content="{{title}}" />
+    {%- for a in authors %}
+    <meta name="citation_author" content="{{a}}" />
+    {%- endfor %}
+    {%- for c in contributors %}
+    <meta name="citation_contributor" content="{{c}}" />
+    {%- endfor %}
+    {%- if publisher %}
+    <meta name="citation_publisher" content="{{publisher}}" />
+    {%- endif %}
+    {%- if publication_date %}
+    <meta name="citation_publication_date" content="{{publication_date|to_arrow|format_arrow('YYYY/MM/DD')}}" />
+    {%- endif %}
+    {%- if doi %}
+    <meta name="citation_doi" content="{{doi}}" />
+    {%- endif %}
+    {%- for k in keywords %}
+    <meta name="citation_keywords" content="{{k}}" />
+    {%- endfor %}
+    {%- if url %}
+    <meta name="citation_abstract_html_url" content="{{url}}" />
+    {%- endif %}
+    {%- if pdf_url %}
+    <meta name="citation_pdf_url" content="{{pdf_url}}" />
+    {%- endif %}
+{%- endmacro %}
