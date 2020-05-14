@@ -1,0 +1,45 @@
+{# -*- coding: utf-8 -*-
+
+  This file is part of Invenio.
+  Copyright (C) 2016-2018 CERN.
+
+  Invenio is free software; you can redistribute it and/or modify it
+  under the terms of the MIT License; see LICENSE file for more details.
+#}
+
+{# Generate a list different ways to embed a badge. #}
+{%- macro badges_formats_list(image_filename, target, alternative='DOI') %}
+    <h4>
+        <small>Markdown</small>
+    </h4>
+    <h4>
+        <pre>[![{{ alternative }}]({{ image_filename }})]({{ target }})</pre>
+    </h4>
+    <h4>
+        <small>reStructedText</small>
+    </h4>
+    <h4>
+        <pre>.. image:: {{ image_filename }}
+   :target: {{ target }}</pre>
+    </h4>
+    <h4>
+        <small>HTML</small>
+    </h4>
+    <h4>
+      <pre>&lt;a href="{{ target }}"&gt;&lt;img src="{{ image_filename }}" alt="{{ alternative }}"&gt;&lt;/a&gt;</pre>
+    </h4>
+
+    <h4>
+        <small>Image URL</small>
+    </h4>
+    <h4>
+      <pre>{{ image_filename }}</pre>
+    </h4>
+
+    <h4>
+        <small>Target URL</small>
+    </h4>
+    <h4>
+      <pre>{{ target }}</pre>
+    </h4>
+{%- endmacro %}
