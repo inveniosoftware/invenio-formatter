@@ -8,6 +8,10 @@
 Changes
 =======
 
+Version 1.1.0a1 (released 2020-05-15)
+
+- Integrates Semantic-UI templates
+
 Version 1.0.3 (released 2020-05-06)
 
 - Deprecated Python versions lower than 3.6.0. Now supporting 3.6.0 and 3.7.0
