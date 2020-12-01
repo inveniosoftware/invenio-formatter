@@ -7,9 +7,13 @@
 # Invenio is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
-pydocstyle invenio_formatter tests docs && \
-isort invenio_formatter tests --check-only --diff && \
-check-manifest --ignore ".travis-*" && \
-sphinx-build -qnNW docs docs/_build/html && \
-python setup.py test && \
+set -o errexit 
+
+set -o nounset 
+
+pydocstyle invenio_formatter tests docs
+python -m check_manifest --ignore ".*-requirements.txt"
+isort invenio_formatter tests --check-only --diff
+sphinx-build -qnNW docs docs/_build/html
+python setup.py test
 sphinx-build -qnNW -b doctest docs docs/_build/doctest
