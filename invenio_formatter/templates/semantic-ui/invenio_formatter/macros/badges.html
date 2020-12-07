@@ -9,37 +9,38 @@
 
 {# Generate a list different ways to embed a badge. #}
 {%- macro badges_formats_list(image_filename, target, alternative='DOI') %}
+
     <h4>
         <small>Markdown</small>
     </h4>
     <h4>
-        <pre>[![{{ alternative }}]({{ image_filename }})]({{ target }})</pre>
+      <div class="ui message code"><pre>[![{{ alternative }}]({{ image_filename }})]({{ target }})</pre></div>
     </h4>
     <h4>
         <small>reStructedText</small>
     </h4>
     <h4>
-        <pre>.. image:: {{ image_filename }}
-   :target: {{ target }}</pre>
+      <div class="ui message code"><pre>.. image:: {{ image_filename }}
+   :target: {{ target }}</pre></div>
     </h4>
     <h4>
         <small>HTML</small>
     </h4>
     <h4>
-      <pre>&lt;a href="{{ target }}"&gt;&lt;img src="{{ image_filename }}" alt="{{ alternative }}"&gt;&lt;/a&gt;</pre>
+      <div class="ui message code"><pre>&lt;a href="{{ target }}"&gt;&lt;img src="{{ image_filename }}" alt="{{ alternative }}"&gt;&lt;/a&gt;</pre></div>
     </h4>
 
     <h4>
         <small>Image URL</small>
     </h4>
     <h4>
-      <pre>{{ image_filename }}</pre>
+      <div class="ui message code"><pre>{{ image_filename }}</pre></div>
     </h4>
 
     <h4>
-        <small>Target URL</small>
+      <small>Target URL</small>
     </h4>
     <h4>
-      <pre>{{ target }}</pre>
+      <div class="ui message code"><pre>{{ target }}</pre></div>
     </h4>
 {%- endmacro %}
