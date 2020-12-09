@@ -8,9 +8,10 @@
 Changes
 =======
 
-Version 1.1.0a1 (released 2020-05-15)
+Version 1.1.0 (released 2020-12-09)
 
 - Integrates Semantic-UI templates
+- Migrates CI to GitHub actions
 
 Version 1.0.3 (released 2020-05-06)
 
