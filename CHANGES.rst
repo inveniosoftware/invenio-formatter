@@ -8,6 +8,10 @@
 Changes
 =======
 
+Version 1.1.2 (released 2021-07-15)
+
+- Bump Flask minimum version
+
 Version 1.1.1 (released 2021-07-15)
 
 - Adds german translations
