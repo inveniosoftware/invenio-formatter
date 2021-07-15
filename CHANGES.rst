@@ -8,6 +8,10 @@
 Changes
 =======
 
+Version 1.1.1 (released 2021-07-15)
+
+- Adds german translations
+
 Version 1.1.0 (released 2020-12-09)
 
 - Integrates Semantic-UI templates

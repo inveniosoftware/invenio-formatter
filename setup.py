@@ -16,7 +16,7 @@ readme = open('README.rst').read()
 history = open('CHANGES.rst').read()
 
 tests_require = [
-    'pytest-invenio>=1.4.0',
+    'pytest-invenio~=1.4.1',
 ]
 
 extras_require = {
@@ -48,10 +48,10 @@ setup_requires = [
 
 install_requires = [
     'bleach>=3.1.0',
-    'Flask>=0.11.1',
+    'Flask>=1.0.4,<2.0',
     'arrow>=0.7.0',
-    'Flask-BabelEx>=0.9.2',
-    'Jinja2>=2.8',
+    'Flask-BabelEx>=0.9.4',
+    'invenio-i18n>=1.2.0',
 ]
 
 packages = find_packages()

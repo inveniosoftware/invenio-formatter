@@ -13,6 +13,7 @@ from __future__ import absolute_import, print_function
 
 import pytest
 from flask import Flask
+from invenio_i18n import InvenioI18N
 
 from invenio_formatter import InvenioFormatter
 
@@ -30,5 +31,6 @@ def app():
             'a': ['href'],
         },
     )
+    InvenioI18N(app)
     InvenioFormatter(app)
     return app
