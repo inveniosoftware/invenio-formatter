@@ -2,6 +2,7 @@
 #
 # This file is part of Invenio.
 # Copyright (C) 2015-2018 CERN.
+# Copyright (C) 2021      TU Wien.
 #
 # Invenio is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
@@ -17,6 +18,7 @@ history = open('CHANGES.rst').read()
 
 tests_require = [
     'pytest-invenio~=1.4.1',
+    'mock>=4.0.3',
 ]
 
 extras_require = {
@@ -48,7 +50,6 @@ setup_requires = [
 
 install_requires = [
     'bleach>=3.1.0',
-    'Flask>=1.1.4,<2.0',
     'arrow>=0.7.0',
     'Flask-BabelEx>=0.9.4',
     'invenio-i18n>=1.2.0',
