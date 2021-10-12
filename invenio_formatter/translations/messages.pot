@@ -7,9 +7,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: invenio-formatter 1.1.0\n"
+"Project-Id-Version: invenio-formatter 1.1.2\n"
 "Report-Msgid-Bugs-To: info@inveniosoftware.org\n"
-"POT-Creation-Date: 2021-06-16 13:53+0200\n"
+"POT-Creation-Date: 2021-10-12 11:33+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,28 +18,28 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.1\n"
 
-#: invenio_formatter/templates/invenio_formatter/macros/badges.html:13
-#: invenio_formatter/templates/semantic-ui/invenio_formatter/macros/badges.html:14
+#: invenio_formatter/templates/invenio_formatter/macros/badges.html:14
+#: invenio_formatter/templates/semantic-ui/invenio_formatter/macros/badges.html:15
 msgid "Markdown"
 msgstr ""
 
-#: invenio_formatter/templates/invenio_formatter/macros/badges.html:19
-#: invenio_formatter/templates/semantic-ui/invenio_formatter/macros/badges.html:20
+#: invenio_formatter/templates/invenio_formatter/macros/badges.html:20
+#: invenio_formatter/templates/semantic-ui/invenio_formatter/macros/badges.html:21
 msgid "reStructedText"
 msgstr ""
 
-#: invenio_formatter/templates/invenio_formatter/macros/badges.html:26
-#: invenio_formatter/templates/semantic-ui/invenio_formatter/macros/badges.html:27
+#: invenio_formatter/templates/invenio_formatter/macros/badges.html:27
+#: invenio_formatter/templates/semantic-ui/invenio_formatter/macros/badges.html:28
 msgid "HTML"
 msgstr ""
 
-#: invenio_formatter/templates/invenio_formatter/macros/badges.html:33
-#: invenio_formatter/templates/semantic-ui/invenio_formatter/macros/badges.html:34
+#: invenio_formatter/templates/invenio_formatter/macros/badges.html:34
+#: invenio_formatter/templates/semantic-ui/invenio_formatter/macros/badges.html:35
 msgid "Image URL"
 msgstr ""
 
-#: invenio_formatter/templates/invenio_formatter/macros/badges.html:40
-#: invenio_formatter/templates/semantic-ui/invenio_formatter/macros/badges.html:41
+#: invenio_formatter/templates/invenio_formatter/macros/badges.html:41
+#: invenio_formatter/templates/semantic-ui/invenio_formatter/macros/badges.html:42
 msgid "Target URL"
 msgstr ""
 
