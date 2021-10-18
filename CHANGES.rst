@@ -8,6 +8,10 @@
 Changes
 =======
 
+Version 1.1.3 (released 2021-10-18)
+
+- Unpin Flask verison.
+
 Version 1.1.2 (released 2021-07-15)
 
 - Bump Flask minimum version

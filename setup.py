@@ -49,9 +49,10 @@ setup_requires = [
 ]
 
 install_requires = [
-    'bleach>=3.1.0',
     'arrow>=0.7.0',
+    'bleach>=3.1.0',
     'Flask-BabelEx>=0.9.4',
+    'invenio-base>=1.2.5',
     'invenio-i18n>=1.2.0',
 ]
 
