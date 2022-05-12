@@ -13,8 +13,7 @@ from __future__ import absolute_import, print_function
 from pkg_resources import DistributionNotFound, get_distribution
 
 from . import config
-from .filters.datetime import format_arrow, from_isodate, from_isodatetime, \
-    to_arrow
+from .filters.datetime import format_arrow, from_isodate, from_isodatetime, to_arrow
 from .filters.html import sanitize_html
 from .views import create_badge_blueprint
 
@@ -46,17 +45,17 @@ class InvenioFormatter(object):
             sanitize_html=sanitize_html,
         )
 
-        if app.config['FORMATTER_BADGES_ENABLE']:
-            from invenio_formatter.context_processors.badges import \
-                badges_processor
+        if app.config["FORMATTER_BADGES_ENABLE"]:
+            from invenio_formatter.context_processors.badges import badges_processor
 
             # Registration of context processors.
             app.context_processor(badges_processor)
             # Register blueprint.
-            app.register_blueprint(create_badge_blueprint(
-                app.config['FORMATTER_BADGES_ALLOWED_TITLES']))
+            app.register_blueprint(
+                create_badge_blueprint(app.config["FORMATTER_BADGES_ALLOWED_TITLES"])
+            )
 
-        app.extensions['invenio-formatter'] = self
+        app.extensions["invenio-formatter"] = self
 
     @staticmethod
     def init_config(app):
@@ -68,13 +67,13 @@ class InvenioFormatter(object):
         :param app: The Flask application.
         """
         try:
-            get_distribution('CairoSVG')
+            get_distribution("CairoSVG")
             has_cairo = True
         except DistributionNotFound:
             has_cairo = False
 
-        app.config.setdefault('FORMATTER_BADGES_ENABLE', has_cairo)
+        app.config.setdefault("FORMATTER_BADGES_ENABLE", has_cairo)
 
         for attr in dir(config):
-            if attr.startswith('FORMATTER_'):
+            if attr.startswith("FORMATTER_"):
                 app.config.setdefault(attr, getattr(config, attr))

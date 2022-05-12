@@ -24,8 +24,7 @@ def sanitize_html(value, tags=None, attributes=None):
     """
     return bleach.clean(
         value,
-        tags=tags or current_app.config.get('ALLOWED_HTML_TAGS', []),
-        attributes=attributes or current_app.config.get(
-            'ALLOWED_HTML_ATTRS', {}),
+        tags=tags or current_app.config.get("ALLOWED_HTML_TAGS", []),
+        attributes=attributes or current_app.config.get("ALLOWED_HTML_ATTRS", {}),
         strip=True,
     ).strip()

@@ -38,8 +38,7 @@ def test_meta_opengraph(app):
     """
     with app.test_request_context():
         html = render_template_string(template)
-        assert '<meta property="og:url" content="http://example.org" />' \
-            in html
+        assert '<meta property="og:url" content="http://example.org" />' in html
         assert '<meta property="og:site_name" content="SITE" />' in html
         assert '<meta property="og:title" content="TITLE" />' in html
         assert '<meta property="og:description" content="DESC" />' in html
@@ -55,15 +54,11 @@ def test_meta_highwire(app):
     """
     with app.test_request_context():
         html = render_template_string(template, today=date(2002, 1, 1))
-        assert '<meta name="citation_publication_date"' \
-               ' content="2002/01/01" />' \
-               in html
-        assert '<meta name="citation_author"' \
-               ' content="Doe, John" />' \
-               in html
-        assert '<meta name="citation_author"' \
-               ' content="Smith, Joe" />' \
-               in html
+        assert (
+            '<meta name="citation_publication_date"' ' content="2002/01/01" />' in html
+        )
+        assert '<meta name="citation_author"' ' content="Doe, John" />' in html
+        assert '<meta name="citation_author"' ' content="Smith, Joe" />' in html
 
 
 def test_meta_badges_formats_list(app):
@@ -76,5 +71,5 @@ def test_meta_badges_formats_list(app):
     with app.test_request_context():
         html = render_template_string(template, today=date(2002, 1, 1))
         assert '<pre>&lt;a href="link"&gt;&lt;img src="image.svg"' in html
-        assert '<pre>.. image:: image.svg' in html
-        assert '<pre>[![DOI](image.svg)](link)' in html
+        assert "<pre>.. image:: image.svg" in html
+        assert "<pre>[![DOI](image.svg)](link)" in html

@@ -22,16 +22,16 @@ def get_text_length(*args):
     :param \*args: List of strings to be measured.
     :returns: The length of the strings.
     """
-    txt = Image.new('RGBA', (16, 16), (255, 255, 255, 0))
+    txt = Image.new("RGBA", (16, 16), (255, 255, 255, 0))
     d = ImageDraw.Draw(txt)
     font = ImageFont.truetype("DejaVuSans", 11)
     result = ()
     for value in args:
-        result = result + (d.textsize(value, font=font)[0], )
+        result = result + (d.textsize(value, font=font)[0],)
     return result
 
 
-def generate_badge_svg(title, value, color='#007ec6'):
+def generate_badge_svg(title, value, color="#007ec6"):
     """Generate the SVG.
 
     :param title: The badge title.
@@ -40,7 +40,7 @@ def generate_badge_svg(title, value, color='#007ec6'):
     :returns: The SVG badge.
     """
     (title_length, value_length) = get_text_length(title, value)
-    return '''<svg xmlns="http://www.w3.org/2000/svg"
+    return """<svg xmlns="http://www.w3.org/2000/svg"
      width="{width}" height="20">
         <linearGradient id="b" x2="0" y2="100%">
             <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
@@ -74,7 +74,7 @@ def generate_badge_svg(title, value, color='#007ec6'):
                 {value}
             </text>
         </g>
-    </svg>'''.format(
+    </svg>""".format(
         title_width=title_length + 11,
         value_width=value_length + 11,
         width=title_length + value_length + 22,
@@ -86,7 +86,7 @@ def generate_badge_svg(title, value, color='#007ec6'):
     )
 
 
-def generate_badge_png(title, value, color='#007ec6'):
+def generate_badge_png(title, value, color="#007ec6"):
     """Generate the badge in PNG format."""
     badge = generate_badge_svg(title, value, color)
     return cairosvg.svg2png(badge)
@@ -94,17 +94,15 @@ def generate_badge_png(title, value, color='#007ec6'):
 
 def badges_processor():
     """Context processor for badges."""
-    def badge_svg(title, value, color='#007ec6'):
+
+    def badge_svg(title, value, color="#007ec6"):
         """Context processor function to generate SVG badges."""
         return generate_badge_svg(title, value, color)
 
-    def badge_png(title, value, color='#007ec6'):
+    def badge_png(title, value, color="#007ec6"):
         """Context processor function to generate SVG badges."""
         png = generate_badge_png(title, value, color)
         png_base64 = b64encode(png)
-        return 'data:image/png;base64,{0}'.format(png_base64)
+        return "data:image/png;base64,{0}".format(png_base64)
 
-    return dict(
-        badge_svg=badge_svg,
-        badge_png=badge_png
-    )
+    return dict(badge_svg=badge_svg, badge_png=badge_png)

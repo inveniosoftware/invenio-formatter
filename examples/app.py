@@ -48,26 +48,25 @@ from invenio_formatter import InvenioFormatter
 
 # Create Flask application
 app = Flask(__name__)
-app.config['ALLOWED_HTML_TAGS'] = [
-    'a',
+app.config["ALLOWED_HTML_TAGS"] = [
+    "a",
 ]
-app.config['ALLOWED_HTML_ATTRS'] = {
-    'a': ['href'],
+app.config["ALLOWED_HTML_ATTRS"] = {
+    "a": ["href"],
 }
 InvenioFormatter(app)
 
 # Set jinja loader to first grab templates from the app's folder.
-app.jinja_loader = jinja2.ChoiceLoader([
-    jinja2.FileSystemLoader(join(dirname(__file__), "templates")),
-    app.jinja_loader
-])
+app.jinja_loader = jinja2.ChoiceLoader(
+    [jinja2.FileSystemLoader(join(dirname(__file__), "templates")), app.jinja_loader]
+)
 
 
-@app.route('/', methods=['GET'])
+@app.route("/", methods=["GET"])
 def index():
     """Example format date."""
     mydate = datetime.date.today()
     malicious_script = b"<script>alert('I will hack Invenio!')</script>"
-    base64_script = base64.b64encode(malicious_script).decode('UTF-8')
+    base64_script = base64.b64encode(malicious_script).decode("UTF-8")
     content = "<a href='data:text/html;base64,{}'></a>".format(base64_script)
-    return render_template('index.html', mydate=mydate, content=content)
+    return render_template("index.html", mydate=mydate, content=content)

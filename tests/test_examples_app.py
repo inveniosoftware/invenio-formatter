@@ -24,13 +24,16 @@ def example_app():
 
     # Go to example directory
     project_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    exampleappdir = os.path.join(project_dir, 'examples')
+    exampleappdir = os.path.join(project_dir, "examples")
     os.chdir(exampleappdir)
 
     # Start example app
     webapp = subprocess.Popen(
-        'FLASK_APP=app.py flask run --debugger -p 5000',
-        stdout=subprocess.PIPE, preexec_fn=os.setsid, shell=True)
+        "FLASK_APP=app.py flask run --debugger -p 5000",
+        stdout=subprocess.PIPE,
+        preexec_fn=os.setsid,
+        shell=True,
+    )
     time.sleep(3)
     yield webapp
 
@@ -44,9 +47,12 @@ def example_app():
 def test_example_app(example_app):
     """Test example app."""
     # Testing get index page
-    cmd = 'curl http://127.0.0.1:5000/'
+    cmd = "curl http://127.0.0.1:5000/"
     output = subprocess.check_output(cmd, shell=True).decode("utf-8")
-    expected = '\nToday is {0}\n<img src="/badge/DOI/invenio.12345.svg">' \
-        '</img>\nInvenio will not be hacked! &lt;a&gt;&lt;/a&gt;.'.format(
-            datetime.date.today())
+    expected = (
+        '\nToday is {0}\n<img src="/badge/DOI/invenio.12345.svg">'
+        "</img>\nInvenio will not be hacked! &lt;a&gt;&lt;/a&gt;.".format(
+            datetime.date.today()
+        )
+    )
     assert expected == output

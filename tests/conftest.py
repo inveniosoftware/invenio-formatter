@@ -21,14 +21,14 @@ from invenio_formatter import InvenioFormatter
 @pytest.fixture()
 def app():
     """Flask application fixture."""
-    app = Flask('testapp')
+    app = Flask("testapp")
     app.config.update(
         TESTING=True,
         ALLOWED_HTML_TAGS=[
-            'a',
+            "a",
         ],
         ALLOWED_HTML_ATTRS={
-            'a': ['href'],
+            "a": ["href"],
         },
     )
     InvenioI18N(app)

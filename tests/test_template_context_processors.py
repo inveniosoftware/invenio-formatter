@@ -20,7 +20,7 @@ def test_context_processor_badge_svg(app):
     """
     with app.test_request_context():
         html = render_template_string(template)
-        html = html.replace('\n', '').replace(' ', '')
+        html = html.replace("\n", "").replace(" ", "")
         assert 'fill-opacity=".3">DOI</text>' in html
         assert 'y="14">DOI</text>' in html
         assert 'fill-opacity=".3">10.1234/zenodo.12345</text>' in html
@@ -34,4 +34,4 @@ def test_context_processor_badge_png(app):
     """
     with app.test_request_context():
         html = render_template_string(template)
-        assert 'data:image/png;base64,' in html
+        assert "data:image/png;base64," in html
