@@ -69,6 +69,7 @@ at `http://localhost:5000/badge/ISBN/9780399547331.svg
 from __future__ import absolute_import, print_function
 
 from .ext import InvenioFormatter
-from .version import __version__
+
+__version__ = '1.1.3'
 
 __all__ = ('__version__', 'InvenioFormatter')
