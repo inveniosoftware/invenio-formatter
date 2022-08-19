@@ -8,8 +8,6 @@
 
 """Configuration for Invenio-Formatter."""
 
-from __future__ import absolute_import, print_function
-
 FORMATTER_BADGES_ALLOWED_TITLES = ["DOI"]
 """List of allowed titles in badges."""
 
