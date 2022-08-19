@@ -66,8 +66,6 @@ at `http://localhost:5000/badge/ISBN/9780399547331.svg
 <http://localhost:5000/badge/ISBN/9780399547331.svg>`_.
 """
 
-from __future__ import absolute_import, print_function
-
 from .ext import InvenioFormatter
 
 __version__ = "1.1.3"
