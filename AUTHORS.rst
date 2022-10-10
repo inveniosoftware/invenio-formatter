@@ -18,6 +18,7 @@ Contributors
 - Lars Holm Nielsen
 - Leonardo Rossi
 - Orestis Melkonian
+- Sam Arbid (KTH)
 - Sami Hiltunen
 - Sebastian Witowski
 - Tibor Simko
