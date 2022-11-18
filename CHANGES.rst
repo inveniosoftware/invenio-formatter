@@ -8,6 +8,13 @@
 Changes
 =======
 
+Version 1.1.4 (released 2021-10-18)
+
+- Add translation CI
+- Add pulled translations
+- Move from setup.py to setup.cfg
+- Add black
+
 Version 1.1.3 (released 2021-10-18)
 
 - Unpin Flask verison.
