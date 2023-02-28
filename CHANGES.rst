@@ -8,6 +8,11 @@
 Changes
 =======
 
+Version 1.2.0 (released 2021-02-28)
+
+- remove flask-babelex deprecated dependency
+- upgrade invenio-i18n to manage babel globally
+
 Version 1.1.4 (released 2021-10-18)
 
 - Add translation CI
