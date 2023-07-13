@@ -11,6 +11,7 @@
 from __future__ import absolute_import, print_function
 
 import arrow
+from flask_babel import to_user_timezone
 
 
 def from_isodate(value, strict=False):
@@ -59,3 +60,11 @@ def format_arrow(value, format_string):
 def to_arrow(value):
     """Convert a Date object to an arrow datetime object."""
     return arrow.get(value)
+
+
+def naturaltime(value):
+    """Get humanized version of time."""
+    arrow_value = to_arrow(value)
+    humanized = arrow_value.humanize()
+
+    return humanized
