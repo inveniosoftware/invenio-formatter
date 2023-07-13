@@ -13,7 +13,13 @@ from __future__ import absolute_import, print_function
 from pkg_resources import DistributionNotFound, get_distribution
 
 from . import config
-from .filters.datetime import format_arrow, from_isodate, from_isodatetime, to_arrow
+from .filters.datetime import (
+    format_arrow,
+    from_isodate,
+    from_isodatetime,
+    naturaltime,
+    to_arrow,
+)
 from .filters.html import sanitize_html
 from .views import create_badge_blueprint
 
@@ -43,6 +49,7 @@ class InvenioFormatter(object):
             to_arrow=to_arrow,
             format_arrow=format_arrow,
             sanitize_html=sanitize_html,
+            naturaltime=naturaltime,
         )
 
         if app.config["FORMATTER_BADGES_ENABLE"]:
