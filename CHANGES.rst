@@ -8,6 +8,10 @@
 Changes
 =======
 
+Version 1.3.0 (released 2023-07-17)
+
+- add template filter for human readable time
+
 Version 1.2.0 (released 2021-02-28)
 
 - remove flask-babelex deprecated dependency
