@@ -8,6 +8,10 @@
 Changes
 =======
 
+Version 1.3.1 (released 2023-07-19)
+
+- setup: fix for `pillow.ImageDraw.textsize` deprecated method
+
 Version 1.3.0 (released 2023-07-17)
 
 - add template filter for human readable time
