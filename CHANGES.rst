@@ -8,6 +8,10 @@
 Changes
 =======
 
+Version 1.1.6 (released 2023-07-19)
+
+- add pillow to install requirements
+
 Version 1.1.5 (released 2023-07-19)
 
 - setup: upper pin pillow due to breaking changes

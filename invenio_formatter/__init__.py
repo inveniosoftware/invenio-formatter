@@ -70,6 +70,6 @@ from __future__ import absolute_import, print_function
 
 from .ext import InvenioFormatter
 
-__version__ = "1.1.5"
+__version__ = "1.1.6"
 
 __all__ = ("__version__", "InvenioFormatter")
