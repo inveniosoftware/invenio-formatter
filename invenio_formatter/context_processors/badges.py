@@ -16,6 +16,18 @@ import cairosvg
 from PIL import Image, ImageDraw, ImageFont
 
 
+def _get_image_draw_size(image_draw, value, font):
+    """Helper to keep backwards compatibility with pillow<10.0."""
+    textsize = 0
+    try:
+        textsize = image_draw.textsize(value, font=font)[0]
+    except AttributeError:
+        # ImageDraw.textsize was replaced by ImageDraw.textlength in v10.0.0
+        # See https://github.com/python-pillow/Pillow/blob/main/docs/deprecations.rst#font-size-and-offset-methods
+        textsize = image_draw.textlength(value, font=font)[0]
+    return textsize
+
+
 def get_text_length(*args):
     r"""Measure the size of string rendered with a TTF no-nomospaced fonts.
 
@@ -24,10 +36,11 @@ def get_text_length(*args):
     """
     txt = Image.new("RGBA", (16, 16), (255, 255, 255, 0))
     d = ImageDraw.Draw(txt)
+
     font = ImageFont.truetype("DejaVuSans", 11)
     result = ()
     for value in args:
-        result = result + (d.textsize(value, font=font)[0],)
+        result = result + (_get_image_draw_size(d, value, font=font),)
     return result
 
 
