@@ -27,7 +27,7 @@ def get_text_length(*args):
     font = ImageFont.truetype("DejaVuSans", 11)
     result = ()
     for value in args:
-        result = result + (d.textlength(value, font=font)[0],)
+        result = result + (d.textlength(value, font=font),)
     return result
 
 

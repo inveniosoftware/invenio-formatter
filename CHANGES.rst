@@ -8,6 +8,10 @@
 Changes
 =======
 
+Version 2.0.0 (released 2023-07-19)
+
+- setup: bump pillow minimum version
+
 Version 1.3.0 (released 2023-07-17)
 
 - add template filter for human readable time
