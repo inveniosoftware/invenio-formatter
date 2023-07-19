@@ -8,6 +8,10 @@
 Changes
 =======
 
+Version 1.2.1 (released 2023-07-19)
+
+- setup: upper pin pillow due to breaking changes
+
 Version 1.2.0 (released 2021-02-28)
 
 - remove flask-babelex deprecated dependency
