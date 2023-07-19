@@ -8,6 +8,10 @@
 Changes
 =======
 
+Version 1.1.5 (released 2023-07-19)
+
+- setup: upper pin pillow due to breaking changes
+
 Version 1.1.4 (released 2021-10-18)
 
 - Add translation CI
