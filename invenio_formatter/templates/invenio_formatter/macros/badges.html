@@ -10,37 +10,29 @@
 
 {# Generate a list different ways to embed a badge. #}
 {%- macro badges_formats_list(image_filename, target, alternative='DOI') %}
-    <h4>
-        <small>{{ _("Markdown") }}</small>
-    </h4>
-    <h4>
-        <pre>[![{{ alternative }}]({{ image_filename }})]({{ target }})</pre>
-    </h4>
-    <h4>
-        <small>{{ _("reStructedText") }}</small>
-    </h4>
-    <h4>
-        <pre>.. image:: {{ image_filename }}
-   :target: {{ target }}</pre>
-    </h4>
-    <h4>
-        <small>{{ _("HTML") }}</small>
-    </h4>
-    <h4>
-      <pre>&lt;a href="{{ target }}"&gt;&lt;img src="{{ image_filename }}" alt="{{ alternative }}"&gt;&lt;/a&gt;</pre>
-    </h4>
+    <h3 class="ui small header">
+     {{ _("Markdown") }}
+    </h3>
+    <pre>[![{{ alternative }}]({{ image_filename }})]({{ target }})</pre>
 
-    <h4>
-        <small>{{ _("Image URL") }}</small>
-    </h4>
-    <h4>
-      <pre>{{ image_filename }}</pre>
-    </h4>
+    <h3 class="ui small header">
+     {{ _("reStructedText") }}
+    </h3>
+    <pre>.. image:: {{ image_filename }}
+  :target: {{ target }}</pre>
 
-    <h4>
-        <small>{{ _("Target URL") }}</small>
-    </h4>
-    <h4>
-      <pre>{{ target }}</pre>
-    </h4>
+    <h3 class="ui small header">
+     {{ _("HTML") }}
+    </h3>
+    <pre>&lt;a href="{{ target }}"&gt;&lt;img src="{{ image_filename }}" alt="{{ alternative }}"&gt;&lt;/a&gt;</pre>
+
+    <h3 class="ui small header">
+     {{ _("Image URL") }}
+    </h3>
+    <pre>{{ image_filename }}</pre>
+
+    <h3 class="ui small header">
+     {{ _("Target URL") }}
+    </h3>
+    <pre>{{ target }}</pre>
 {%- endmacro %}
