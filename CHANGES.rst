@@ -8,6 +8,10 @@
 Changes
 =======
 
+Version 2.0.1 (released 2023-07-26)
+
+- badges: semantic html Fixes
+
 Version 2.0.0 (released 2023-07-19)
 
 - setup: bump pillow minimum version
