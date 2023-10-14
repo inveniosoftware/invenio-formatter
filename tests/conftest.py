@@ -9,8 +9,6 @@
 
 """Pytest configuration."""
 
-from __future__ import absolute_import, print_function
-
 import pytest
 from flask import Flask
 from invenio_i18n import InvenioI18N

@@ -8,8 +8,6 @@
 
 """Module tests."""
 
-from __future__ import absolute_import, print_function
-
 from flask import Flask
 from mock import patch
 from pkg_resources import DistributionNotFound

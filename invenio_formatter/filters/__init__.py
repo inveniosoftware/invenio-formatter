@@ -7,5 +7,3 @@
 # under the terms of the MIT License; see LICENSE file for more details.
 
 """Jinja filters for Invenio."""
-
-from __future__ import absolute_import, print_function

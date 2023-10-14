@@ -8,8 +8,6 @@
 
 """Jinja utilities for Invenio."""
 
-from __future__ import absolute_import, print_function
-
 from pkg_resources import DistributionNotFound, get_distribution
 
 from . import config

@@ -8,8 +8,6 @@
 
 """View method for Invenio-Formatter."""
 
-from __future__ import absolute_import, print_function
-
 import hashlib
 from datetime import datetime as dt
 from datetime import timedelta
