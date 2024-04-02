@@ -14,8 +14,6 @@ from datetime import timedelta
 
 from flask import Blueprint, Response, current_app, request
 
-from .filters.html import sanitize_html
-
 
 def create_badge_blueprint(allowed_types):
     """Create the badge blueprint.
@@ -41,7 +39,6 @@ def create_badge_blueprint(allowed_types):
     )
     def badge(title, value, ext="svg"):
         """Generate a badge response."""
-        value = sanitize_html(value)  # Added sanitization for value in badge generation
         if ext == "svg":
             generator = generate_badge_svg
             mimetype = "image/svg+xml"

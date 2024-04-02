@@ -8,6 +8,7 @@
 
 """Badges context processor."""
 
+import html
 from base64 import b64encode
 
 import cairosvg
@@ -37,6 +38,8 @@ def generate_badge_svg(title, value, color="#007ec6"):
     :param color: The badge color. (Default: ``'#007ec6'``)
     :returns: The SVG badge.
     """
+    title = html.escape(title)
+    value = html.escape(value)
     (title_length, value_length) = get_text_length(title, value)
     return """<svg xmlns="http://www.w3.org/2000/svg"
      width="{width}" height="20">
