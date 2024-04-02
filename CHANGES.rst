@@ -8,6 +8,10 @@
 Changes
 =======
 
+Version 2.0.3 (released 2024-04-02)
+
+- escaped badge title and value on svg generation
+
 Version 2.0.2 (released 2024-02-01)
 
 - templates: replace reStructedText with reStructuredText
