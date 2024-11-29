@@ -2,6 +2,7 @@
 #
 # This file is part of Invenio.
 # Copyright (C) 2015-2024 CERN.
+# Copyright (C) 2024 Graz University of Technology.
 #
 # Invenio is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
@@ -68,6 +69,6 @@ at `http://localhost:5000/badge/ISBN/9780399547331.svg
 
 from .ext import InvenioFormatter
 
-__version__ = "2.0.3"
+__version__ = "2.0.4"
 
 __all__ = ("__version__", "InvenioFormatter")
