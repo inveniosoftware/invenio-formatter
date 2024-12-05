@@ -9,6 +9,10 @@
 Changes
 =======
 
+Version 3.0.0 (released 2024-12-05)
+
+- setup: bump major dependencies
+
 Version 2.0.4 (release 2024-11-30)
 
 - setup: change to reusable workflows
