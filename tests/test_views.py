@@ -87,3 +87,13 @@ def test_views_badge_no_cache_headers(app):
             assert response.last_modified
             assert response.expires
             assert response.get_etag()[0]
+
+
+def test_views_badge_color_parameter(app):
+    with app.app_context():
+        with app.test_client() as client:
+            response = client.get("/badge/DOI/value.svg?color=ff0000")
+            response_data = (
+                response.get_data(as_text=True).replace("\n", "").replace(" ", "")
+            )
+            assert 'fill="#ff0000"' in response_data

@@ -15,6 +15,14 @@ from datetime import timedelta
 from flask import Blueprint, Response, current_app, request
 
 
+def valid_css_color(color):
+    """Test for a valid CSS color (RGB, RRGGBB, or RRGGBBAA hex strings)."""
+    if len(color) not in (3, 6, 8):
+        return False
+    valid_chars = set("0123456789abcdef")
+    return all(char in valid_chars for char in color.lower())
+
+
 def create_badge_blueprint(allowed_types):
     """Create the badge blueprint.
 
@@ -39,6 +47,7 @@ def create_badge_blueprint(allowed_types):
     )
     def badge(title, value, ext="svg"):
         """Generate a badge response."""
+        generator_kwargs = {}
         if ext == "svg":
             generator = generate_badge_svg
             mimetype = "image/svg+xml"
@@ -46,10 +55,16 @@ def create_badge_blueprint(allowed_types):
             generator = generate_badge_png
             mimetype = "image/png"
 
+        color = request.args.get("color")
+        if color and valid_css_color(color):
+            generator_kwargs["color"] = "#" + request.args.get("color")
+
         badge_title_mapping = current_app.config["FORMATTER_BADGES_TITLE_MAPPING"].get(
             title, title
         )
-        response = Response(generator(badge_title_mapping, value), mimetype=mimetype)
+        response = Response(
+            generator(badge_title_mapping, value, **generator_kwargs), mimetype=mimetype
+        )
         # Generate Etag from badge title and value.
         hashable_badge = "{0}.{1}".format(badge_title_mapping, value).encode("utf-8")
         response.set_etag(hashlib.sha1(hashable_badge).hexdigest())
