@@ -9,6 +9,13 @@
 Changes
 =======
 
+Version 3.1.0 (released 2025-06-10)
+
+- badges: add color URL parameter
+- fix: setuptools require underscores instead of dashes
+- i18n: removed deprecated messages
+- docs: update install instructions
+
 Version 3.0.0 (released 2024-12-05)
 
 - setup: bump major dependencies
