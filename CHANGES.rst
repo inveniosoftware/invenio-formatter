@@ -9,6 +9,10 @@
 Changes
 =======
 
+Version 2.1.0 (release 2025-06-10)
+
+- badges: add color URL parameter
+
 Version 2.0.4 (release 2024-11-30)
 
 - setup: change to reusable workflows
