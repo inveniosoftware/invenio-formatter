@@ -2,15 +2,17 @@
 #
 # This file is part of Invenio.
 # Copyright (C) 2015-2018 CERN.
+# Copyright (C) 2025 Graz University of Technology.
 #
 # Invenio is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
 """Module tests."""
 
+from importlib.metadata import PackageNotFoundError
+
 from flask import Flask
 from mock import patch
-from pkg_resources import DistributionNotFound
 
 from invenio_formatter import InvenioFormatter
 
@@ -42,8 +44,8 @@ def test_badge_enable_disable():
     assert app.config["FORMATTER_BADGES_ENABLE"] is True
     assert "invenio_formatter_badges" in app.blueprints
 
-    with patch("invenio_formatter.ext.get_distribution") as f:
-        f.side_effect = DistributionNotFound
+    with patch("invenio_formatter.ext.distribution") as distribution:
+        distribution.side_effect = PackageNotFoundError
 
         app = Flask("testapp")
         InvenioFormatter(app)

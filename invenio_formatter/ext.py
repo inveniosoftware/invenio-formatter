@@ -2,13 +2,14 @@
 #
 # This file is part of Invenio.
 # Copyright (C) 2015-2018 CERN.
+# Copyright (C) 2025 Graz University of Technology.
 #
 # Invenio is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
 """Jinja utilities for Invenio."""
 
-from pkg_resources import DistributionNotFound, get_distribution
+from importlib.metadata import PackageNotFoundError, distribution
 
 from . import config
 from .filters.datetime import (
@@ -72,9 +73,9 @@ class InvenioFormatter(object):
         :param app: The Flask application.
         """
         try:
-            get_distribution("CairoSVG")
+            distribution("CairoSVG")
             has_cairo = True
-        except DistributionNotFound:
+        except PackageNotFoundError:
             has_cairo = False
 
         app.config.setdefault("FORMATTER_BADGES_ENABLE", has_cairo)
