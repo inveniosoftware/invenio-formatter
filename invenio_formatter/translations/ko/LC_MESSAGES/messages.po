@@ -4,10 +4,6 @@
 # project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
 # 
-# Translators:
-# Andrea Dömötör, 2022
-# Zoltán Kanász-Nagy, 2025
-# 
 #, fuzzy
 msgid ""
 msgstr ""
@@ -15,36 +11,35 @@ msgstr ""
 "Report-Msgid-Bugs-To: info@inveniosoftware.org\n"
 "POT-Creation-Date: 2024-08-06 08:47+0000\n"
 "PO-Revision-Date: 2016-08-25 08:41+0000\n"
-"Last-Translator: Zoltán Kanász-Nagy, 2025\n"
-"Language-Team: Hungarian (https://app.transifex.com/inveniosoftware/teams/23537/hu/)\n"
+"Language-Team: Korean (https://app.transifex.com/inveniosoftware/teams/23537/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.15.0\n"
-"Language: hu\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: ko\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: invenio_formatter/templates/invenio_formatter/macros/badges.html:14
 #: invenio_formatter/templates/semantic-ui/invenio_formatter/macros/badges.html:15
 msgid "Markdown"
-msgstr "Markdown"
+msgstr ""
 
 #: invenio_formatter/templates/invenio_formatter/macros/badges.html:19
 #: invenio_formatter/templates/semantic-ui/invenio_formatter/macros/badges.html:22
 msgid "reStructuredText"
-msgstr "reStructuredText"
+msgstr ""
 
 #: invenio_formatter/templates/invenio_formatter/macros/badges.html:25
 #: invenio_formatter/templates/semantic-ui/invenio_formatter/macros/badges.html:30
 msgid "HTML"
-msgstr "HTML"
+msgstr ""
 
 #: invenio_formatter/templates/invenio_formatter/macros/badges.html:30
 #: invenio_formatter/templates/semantic-ui/invenio_formatter/macros/badges.html:37
 msgid "Image URL"
-msgstr "Kép URL"
+msgstr ""
 
 #: invenio_formatter/templates/invenio_formatter/macros/badges.html:35
 #: invenio_formatter/templates/semantic-ui/invenio_formatter/macros/badges.html:44
 msgid "Target URL"
-msgstr "Cél URL"
+msgstr ""
