@@ -2,6 +2,7 @@
 #
 # This file is part of Invenio.
 # Copyright (C) 2015-2018 CERN.
+# Copyright (C) 2025 Graz University of Technology.
 #
 # Invenio is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
@@ -10,7 +11,7 @@
 
 import hashlib
 from datetime import datetime as dt
-from datetime import timedelta
+from datetime import timedelta, timezone
 
 from flask import Blueprint, Response, current_app, request
 
@@ -74,7 +75,7 @@ def create_badge_blueprint(allowed_types):
         response.cache_control.max_age = current_app.config[
             "FORMATTER_BADGES_MAX_CACHE_AGE"
         ]
-        response.last_modified = dt.utcnow()
+        response.last_modified = dt.now(timezone.utc)
         extra = timedelta(seconds=current_app.config["FORMATTER_BADGES_MAX_CACHE_AGE"])
         response.expires = response.last_modified + extra
         return response.make_conditional(request)
