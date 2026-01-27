@@ -1,13 +1,19 @@
 ..
     This file is part of Invenio.
     Copyright (C) 2015-2024 CERN.
-    Copyright (C) 2024-2025 Graz University of Technology.
+    Copyright (C) 2024-2026 Graz University of Technology.
 
     Invenio is free software; you can redistribute it and/or modify it
     under the terms of the MIT License; see LICENSE file for more details.
 
 Changes
 =======
+
+Version v4.0.0 (released 2026-01-27)
+
+- chore(setup): bump pytest-invenio dependency
+- chore(black): update formatting to >= 26.0
+- fix(chore): DeprecationWarning stdlib
 
 Version v3.3.1 (released 2025-10-21)
 
