@@ -40,7 +40,7 @@ def generate_badge_svg(title, value, color="#007ec6"):
     """
     title = html.escape(title)
     value = html.escape(value)
-    (title_length, value_length) = get_text_length(title, value)
+    title_length, value_length = get_text_length(title, value)
     return """<svg xmlns="http://www.w3.org/2000/svg"
      width="{width}" height="20">
         <linearGradient id="b" x2="0" y2="100%">
