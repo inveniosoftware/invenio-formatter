@@ -64,15 +64,17 @@ def create_badge_blueprint(allowed_types):
         # Generate Etag from badge title and value.
         hashable_badge = "{0}.{1}".format(badge_title_mapping, value).encode("utf-8")
         response.set_etag(hashlib.sha1(hashable_badge).hexdigest())
-        # Add headers to prevent caching.
-        response.headers["Pragma"] = "no-cache"
-        response.cache_control.no_cache = True
-        response.cache_control.max_age = current_app.config[
-            "FORMATTER_BADGES_MAX_CACHE_AGE"
-        ]
-        response.last_modified = dt.now(timezone.utc)
-        extra = timedelta(seconds=current_app.config["FORMATTER_BADGES_MAX_CACHE_AGE"])
-        response.expires = response.last_modified + extra
+
+        max_age = current_app.config.get("FORMATTER_BADGES_MAX_CACHE_AGE", 0)
+        if max_age <= 0:
+            response.headers["Pragma"] = "no-cache"
+            response.cache_control.no_cache = True
+            response.cache_control.max_age = 0
+            response.last_modified = response.expires = dt.now(timezone.utc)
+        else:
+            response.cache_control.public = True
+            response.cache_control.max_age = max_age
+
         return response.make_conditional(request)
 
     return blueprint
