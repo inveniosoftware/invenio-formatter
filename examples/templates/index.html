@@ -2,6 +2,6 @@
   SPDX-FileCopyrightText: 2016-2018 CERN.
   SPDX-License-Identifier: MIT
 #}
-Today is {{ mydate|to_arrow|format_arrow('YYYY-MM-DD') }}
+Today is {{ mydate|to_datetime|format_datetime('YYYY-MM-DD') }}
 <img src="{{ url_for('invenio_formatter_badges.badge', title='DOI', value='invenio.12345', ext='svg') }}"></img>
 Invenio will not be hacked! {{ content | safe | sanitize_html() }}.

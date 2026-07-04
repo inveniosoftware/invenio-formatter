@@ -3,7 +3,9 @@
 
 """Datetime Jinja filters."""
 
-import arrow
+from warnings import warn
+
+import pendulum
 from flask_babel import to_user_timezone
 
 
@@ -11,34 +13,42 @@ def from_isodate(value, strict=False):
     """Convert an ISO formatted date into a Date object.
 
     :param value: The ISO formatted date.
-    :param strict: If value is ``None``, then if strict is ``True`` it returns
-        the Date object of today, otherwise it returns ``None``.
-        (Default: ``False``)
+    :param strict: If value is falsy, having strict set to ``False`` will
+        return ``None``; otherwise parsing will be attempted (default: ``False``).
     :returns: The Date object or ``None``.
     """
-    if value or strict:
-        return arrow.get(value).date()
+    if parsed := from_isodatetime(value, strict=strict):
+        return parsed.date()
+
+    return parsed
 
 
 def from_isodatetime(value, strict=False):
-    """Convert an ISO formatted datetime into a Date object.
+    """Convert an ISO formatted datetime into a DateTime object.
 
     :param value: The ISO formatted datetime.
-    :param strict: If value is ``None``, then if strict is ``True`` it returns
-        the Date object of today, otherwise it returns ``None``.
-        (Default: ``False``)
-    :returns: The Date object or ``None``.
+    :param strict: If value is falsy, having strict set to ``False`` will
+        return ``None``; otherwise parsing will be attempted (default: ``False``).
+    :returns: The DateTime object or ``None``.
     """
-    if value or strict:
-        return arrow.get(value).datetime
+    if not value and not strict:
+        return None
+
+    try:
+        if isinstance(value, str):
+            return pendulum.parse(value)
+        else:
+            return to_datetime(value)
+    except ValueError as e:
+        raise pendulum.parsing.ParserError(e)
 
 
-def format_arrow(value, format_string):
-    """Format an arrow datetime object.
+def format_datetime(value, format_string):
+    """Format a DateTime object.
 
-    :param value: The arrow datetime object.
+    :param value: The DateTime object.
     :param format_string: The date format string
-    :returns: Returns a string representation of the given arrow datetime
+    :returns: Returns a string representation of the given DateTime
         object, formatted according to the given format string.
 
     .. note::
@@ -46,18 +56,34 @@ def format_arrow(value, format_string):
         user. Instead use ``datetimeformat`` or ``dateformat`` from
         Invenio-I18N.
     """
-    assert isinstance(value, arrow.Arrow)
+    assert isinstance(value, pendulum.Date)
     return value.format(format_string)
 
 
-def to_arrow(value):
-    """Convert a Date object to an arrow datetime object."""
-    return arrow.get(value)
+def to_datetime(value):
+    """Convert a Date object to an DateTime object."""
+    return pendulum.instance(value)
 
 
 def naturaltime(value):
     """Get humanized version of time."""
-    arrow_value = to_arrow(value)
-    humanized = arrow_value.humanize()
+    datetime_obj = to_datetime(value)
+    humanized = datetime_obj.diff_for_humans(locale=None)
 
     return humanized
+
+
+def to_arrow(value):
+    """Deprecated alias for ``to_datetime()``."""
+    warnings.warn("Use `to_datetime(value)` instead", DeprecationWarning, stacklevel=2)
+    return to_datetime(value)
+
+
+def format_arrow(value, format_string):
+    """Deprecated alias for ``format_datetime()``."""
+    warnings.warn(
+        "Use `format_datetime(value, format_string)` instead",
+        DeprecationWarning,
+        stacklevel=2,
+    )
+    return format_datetime(value, format_string)

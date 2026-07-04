@@ -39,7 +39,7 @@
     <meta name="citation_publisher" content="{{publisher}}" />
     {%- endif %}
     {%- if publication_date %}
-    <meta name="citation_publication_date" content="{{publication_date|to_arrow|format_arrow('YYYY/MM/DD')}}" />
+    <meta name="citation_publication_date" content="{{publication_date|to_datetime|format_datetime('YYYY/MM/DD')}}" />
     {%- endif %}
     {%- if doi %}
     <meta name="citation_doi" content="{{doi}}" />
