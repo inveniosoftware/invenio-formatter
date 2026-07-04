@@ -17,7 +17,7 @@ and save it to some location (e.g.: ``/home/myuser/templates/index.html``)
 
 .. code-block:: html
 
-    Today is {{ mydate|to_arrow|format_arrow('YYYY-MM-DD') }}
+    Today is {{ mydate|to_datetime|format_datetime('YYYY-MM-DD') }}
 
     Your book: {{ badge_svg('isbn','9780399547331')|safe }}
 

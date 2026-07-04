@@ -9,10 +9,12 @@ from importlib.metadata import PackageNotFoundError, distribution
 from . import config
 from .filters.datetime import (
     format_arrow,
+    format_datetime,
     from_isodate,
     from_isodatetime,
     naturaltime,
     to_arrow,
+    to_datetime,
 )
 from .filters.html import sanitize_html
 from .views import create_badge_blueprint
@@ -40,6 +42,8 @@ class InvenioFormatter(object):
         app.jinja_env.filters.update(
             from_isodate=from_isodate,
             from_isodatetime=from_isodatetime,
+            to_datetime=to_datetime,
+            format_datetime=format_datetime,
             to_arrow=to_arrow,
             format_arrow=format_arrow,
             sanitize_html=sanitize_html,
