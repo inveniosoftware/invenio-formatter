@@ -6,6 +6,11 @@
 Changes
 =======
 
+Version v4.0.1 (released 2026-07-21)
+
+- chore(setup): migrate from setuptools to hatchling
+- chore(licenses): update license headers to use SPDX
+
 Version v4.0.0 (released 2026-01-27)
 
 - chore(setup): bump pytest-invenio dependency
