@@ -5,7 +5,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 # 
 # Translators:
-# Kalven Richie, 2022
+# Suthep Yonphimai <tomztt@gmail.com>, 2026
 # 
 #, fuzzy
 msgid ""
@@ -14,13 +14,13 @@ msgstr ""
 "Report-Msgid-Bugs-To: info@inveniosoftware.org\n"
 "POT-Creation-Date: 2026-06-22 20:29+0000\n"
 "PO-Revision-Date: 2016-08-25 08:41+0000\n"
-"Last-Translator: Kalven Richie, 2022\n"
-"Language-Team: Chinese (China) (https://app.transifex.com/inveniosoftware/teams/23537/zh_CN/)\n"
+"Last-Translator: Suthep Yonphimai <tomztt@gmail.com>, 2026\n"
+"Language-Team: Thai (https://app.transifex.com/inveniosoftware/teams/23537/th/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
-"Language: zh_CN\n"
+"Language: th\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: invenio_formatter/templates/invenio_formatter/macros/badges.html:10
@@ -31,7 +31,7 @@ msgstr "Markdown"
 #: invenio_formatter/templates/invenio_formatter/macros/badges.html:15
 #: invenio_formatter/templates/semantic-ui/invenio_formatter/macros/badges.html:18
 msgid "reStructuredText"
-msgstr ""
+msgstr "reStructuredText"
 
 #: invenio_formatter/templates/invenio_formatter/macros/badges.html:21
 #: invenio_formatter/templates/semantic-ui/invenio_formatter/macros/badges.html:26
@@ -41,9 +41,9 @@ msgstr "HTML"
 #: invenio_formatter/templates/invenio_formatter/macros/badges.html:26
 #: invenio_formatter/templates/semantic-ui/invenio_formatter/macros/badges.html:33
 msgid "Image URL"
-msgstr "图像URL"
+msgstr "URL รูปภาพ"
 
 #: invenio_formatter/templates/invenio_formatter/macros/badges.html:31
 #: invenio_formatter/templates/semantic-ui/invenio_formatter/macros/badges.html:40
 msgid "Target URL"
-msgstr "目标URL"
+msgstr "URL เป้าหมาย"
