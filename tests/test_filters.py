@@ -5,10 +5,10 @@
 
 from datetime import date, datetime
 
-import arrow
+import pendulum
 import pytest
-from arrow.parser import ParserError
 from flask import render_template_string
+from pendulum.parsing import ParserError
 
 
 def test_from_isodate(app):
@@ -65,7 +65,7 @@ def test_from_isodatetime(app):
             render_template_string(
                 "{{ 'yes' if dt|from_isodatetime < now else 'no'}}",
                 dt="2002-01-01T00:01:00",
-                now=arrow.now(),
+                now=pendulum.now(),
             )
             == "yes"
         )
@@ -82,7 +82,7 @@ def test_from_isodatetime(app):
             render_template_string,
             "{{ 'yes' if dt < now else 'no'}}",
             dt="2002-01-01T00:01",
-            now=arrow.now(),
+            now=pendulum.now(),
         )
         pytest.raises(
             ParserError,
