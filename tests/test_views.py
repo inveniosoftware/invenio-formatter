@@ -71,13 +71,12 @@ def test_views_badge_etag(app):
             assert response.status_code == 304
 
 
-def test_views_badge_no_cache_headers(app):
-    """Test Etag for badges."""
+def test_views_badge_cache_headers(app):
+    """Test public cache headers for badges."""
     with app.app_context():
         with app.test_client() as client:
             response = client.get("/badge/DOI/value.png")
-            assert response.headers["Pragma"] == "no-cache"
-            cache_control_values = ["no-cache", "max-age"]
+            cache_control_values = ["public", "max-age", "immutable"]
             assert set(cache_control_values).issubset(response.cache_control)
             assert response.last_modified
             assert response.expires
@@ -92,3 +91,6 @@ def test_views_badge_color_parameter(app):
                 response.get_data(as_text=True).replace("\n", "").replace(" ", "")
             )
             assert 'fill="#ff0000"' in response_data
+
+            default_response = client.get("/badge/DOI/value.svg")
+            assert response.get_etag()[0] != default_response.get_etag()[0]
