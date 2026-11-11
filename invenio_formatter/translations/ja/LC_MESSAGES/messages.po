@@ -4,7 +4,6 @@
 # project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
 # 
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: invenio-formatter 2.0.3\n"
